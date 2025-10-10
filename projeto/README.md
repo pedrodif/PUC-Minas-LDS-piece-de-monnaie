@@ -17,7 +17,7 @@
 - Eu, como empresa parceira, quero **receber um e-mail** com o código do resgate de vantagem, para validar a troca quando o aluno utilizar o benefício.
 
 ### Ator: Professor
-- Eu, como professor, quero **receber** meu saldo de 1000 **moedas** a cada semestre, de forma que possa acumular o saldo não utilizado em períodos anteriores.
+- Eu, como professor, quero **receber moedas** a cada semestre, de forma que possa acumular o saldo não utilizado em períodos anteriores.
 
 - Eu, como professor, quero **distribuir moedas** aos meus alunos, informando a quantidade e o motivo, para reconhecer e premiar bom comportamento, desempenho e engajamento em aula.
 
