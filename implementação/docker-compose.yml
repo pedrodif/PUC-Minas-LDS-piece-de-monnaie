@@ -1,0 +1,38 @@
+name: lab
+
+services:
+ mysql:
+   image: mysql
+   container_name: mysql
+   restart: always
+   environment:
+     MYSQL_ROOT_PASSWORD: password
+     MYSQL_DATABASE: piece_de_monnaie
+   ports:
+    - "3307:3306"
+   volumes:
+    - ./docker/mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
+    - db-data:/var/lib/mysql
+   healthcheck:
+    test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-ppassword"]
+    interval: 5s
+    timeout: 10s
+    retries: 10
+
+ piece_de_monnaie:
+   build:
+     context: .
+   image: lab-piece-de-monnaie:latest
+   container_name: piece_de_monnaie
+   depends_on:
+     mysql:
+       condition: service_healthy
+   environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/piece_de_monnaie
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: password
+   ports:
+     - "8080:8080"
+
+volumes:
+  db-data:
