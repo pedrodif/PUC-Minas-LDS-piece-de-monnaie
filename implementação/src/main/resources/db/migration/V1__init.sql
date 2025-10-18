@@ -34,8 +34,8 @@ CREATE TABLE professor (
 CREATE TABLE aluno (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     CPF VARCHAR(14) NOT NULL UNIQUE,
-    RG VARCHAR(12),
-    email VARCHAR(255),
+    RG VARCHAR(12) UNIQUE,
+    email VARCHAR(255) UNIQUE,
     endereco VARCHAR(255),
     quantidade_moeda BIGINT DEFAULT 0,
     usuario_id BIGINT NOT NULL,
@@ -47,7 +47,7 @@ CREATE TABLE aluno (
 CREATE TABLE empresa_parceira (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     CNPJ VARCHAR(18) NOT NULL UNIQUE,
-    email VARCHAR(255),
+    email VARCHAR(255) UNIQUE,
     usuario_id BIGINT NOT NULL,
     FOREIGN KEY (usuario_id) REFERENCES usuario(id)
 );
