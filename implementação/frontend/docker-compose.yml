@@ -1,0 +1,9 @@
+services:
+  frontend:
+    image: nginx:alpine
+    container_name: piece-de-monnaie-frontend
+    restart: always
+    volumes:
+      - ./src:/usr/share/nginx/html:ro
+    ports:
+      - "3000:80"
