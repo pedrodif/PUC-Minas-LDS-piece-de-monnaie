@@ -13,7 +13,7 @@ public class DataSeeder implements CommandLineRunner {
     private final AlunoRepository alunoRepository;
     private final CursoRepository cursoRepository;
     private final InstituicaoDeEnsinoRepository instituicaoDeEnsinoRepository;
-    private final UsuarioRepository usuarioRepository;
+    private final EmpresaParceiraRepository empresaParceiraRepository;
 
     @Override
     public void run(String... args) throws Exception {
@@ -62,6 +62,17 @@ public class DataSeeder implements CommandLineRunner {
         createAluno("rolando.lero", "Rolando Lero", "456.789.123-03", "45.678.912-3", 
                    "rolando.lero@aluno.pucminas.br", "Praça da Liberdade, 789", cienciaComputacao);
         
+        // Criar empresas parceiras
+        System.out.println("Criando empresas parceiras...");
+        createEmpresaParceira("theranos", "Theranos", "11.222.333/0001-44", 
+                             "contato@theranos.com.br");
+        
+        createEmpresaParceira("americanas", "Americanas", "55.666.777/0001-88", 
+                             "contato@americanas.com.br");
+        
+        createEmpresaParceira("xland", "Xland", "99.888.777/0001-66", 
+                             "contato@xland.com.br");
+        
         System.out.println("Seed concluído com sucesso!");
     }
 
@@ -86,5 +97,23 @@ public class DataSeeder implements CommandLineRunner {
                aluno.setCurso(curso);
                alunoRepository.save(aluno);
                System.out.println("Aluno " + nome + " criado com sucesso!");
+           }
+           
+           private void createEmpresaParceira(String username, String nome, String cnpj, String email) {
+               // Verificar se a empresa já existe
+               if (empresaParceiraRepository.existsByCnpj(cnpj)) {
+                   System.out.println("Empresa " + nome + " já existe. Pulando...");
+                   return;
+               }
+               
+               // Criar empresa parceira (que herda de Usuario)
+               EmpresaParceira empresa = new EmpresaParceira();
+               empresa.setUsername(username);
+               empresa.setSenha("123456");
+               empresa.setNome(nome);
+               empresa.setCnpj(cnpj);
+               empresa.setEmail(email);
+               empresaParceiraRepository.save(empresa);
+               System.out.println("Empresa " + nome + " criada com sucesso!");
            }
 }

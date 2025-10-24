@@ -11,8 +11,10 @@ import lombok.*;
 @Table(name = "empresa_parceira")
 @PrimaryKeyJoinColumn(name = "id")
 public class EmpresaParceira extends Usuario {
-    @Column(name = "nome")
-    private String nome;
+    
     @Column(name = "CNPJ", unique = true, length = 18)
-    private String cpnj;
+    private String cnpj;
+    
+    @Column(name = "email", unique = true)
+    private String email;
 }

@@ -283,13 +283,203 @@ Após deletar, tentar buscar o aluno deletado:
 
 ---
 
+## 🏢 **API Empresa Parceira**
+
+### 1. **GET /api/empresas-parceiras** - Listar Todas as Empresas
+
+#### 1.1. Listar Empresas (Lista Vazia)
+
+**Método**: `GET`  
+**URL**: `http://localhost:8080/api/empresas-parceiras`  
+**Headers**: Nenhum
+
+**Resultado Esperado**:
+- Status: `200 OK`
+- Response: Array vazio `[]`
+
+#### 1.2. Listar Empresas (Com Dados)
+
+**Método**: `GET`  
+**URL**: `http://localhost:8080/api/empresas-parceiras`  
+**Headers**: Nenhum
+
+**Resultado Esperado**:
+- Status: `200 OK`
+- Response: Array com empresas parceiras cadastradas
+
+---
+
+### 2. **GET /api/empresas-parceiras/{id}** - Buscar Empresa por ID
+
+#### 2.1. Buscar Empresa Existente
+
+**Método**: `GET`  
+**URL**: `http://localhost:8080/api/empresas-parceiras/1`  
+**Headers**: Nenhum
+
+**Resultado Esperado**:
+- Status: `200 OK`
+- Response: Objeto da empresa com todos os dados
+
+#### 2.2. Buscar Empresa Inexistente
+
+**Método**: `GET`  
+**URL**: `http://localhost:8080/api/empresas-parceiras/999`  
+**Headers**: Nenhum
+
+**Resultado Esperado**:
+- Status: `404 Not Found`
+
+---
+
+### 3. **POST /api/empresas-parceiras** - Criar Nova Empresa
+
+#### 3.1. Criar Empresa com Dados Válidos
+
+**Método**: `POST`  
+**URL**: `http://localhost:8080/api/empresas-parceiras`  
+**Headers**: 
+```
+Content-Type: application/json
+```
+**Body** (raw JSON):
+```json
+{
+  "username": "nova.empresa",
+  "senha": "123456",
+  "nome": "Nova Empresa LTDA",
+  "cnpj": "11.222.333/0001-44",
+  "email": "contato@novaempresa.com.br"
+}
+```
+
+**Resultado Esperado**:
+- Status: `201 Created`
+- Response: Objeto da empresa criada com ID gerado
+
+#### 3.2. Criar Empresa com Dados Inválidos
+
+**Método**: `POST`  
+**URL**: `http://localhost:8080/api/empresas-parceiras`  
+**Headers**: 
+```
+Content-Type: application/json
+```
+**Body** (raw JSON):
+```json
+{
+  "username": "",
+  "senha": "",
+  "nome": "",
+  "cnpj": "123",
+  "email": "email-invalido"
+}
+```
+
+**Resultado Esperado**:
+- Status: `400 Bad Request`
+- Response: Objeto com mensagens de erro para cada campo inválido
+
+#### 3.3. Criar Empresa com CNPJ Duplicado
+
+**Método**: `POST`  
+**URL**: `http://localhost:8080/api/empresas-parceiras`  
+**Headers**: 
+```
+Content-Type: application/json
+```
+**Body** (raw JSON):
+```json
+{
+  "username": "empresa.duplicada",
+  "senha": "123456",
+  "nome": "Empresa Duplicada",
+  "cnpj": "11.222.333/0001-44",
+  "email": "duplicada@empresa.com.br"
+}
+```
+
+**Resultado Esperado**:
+- Status: `400 Bad Request`
+- Response: Mensagem de erro indicando CNPJ já cadastrado
+
+---
+
+### 4. **PUT /api/empresas-parceiras/{id}** - Atualizar Empresa
+
+#### 4.1. Atualizar Empresa Existente
+
+**Método**: `PUT`  
+**URL**: `http://localhost:8080/api/empresas-parceiras/1`  
+**Headers**: 
+```
+Content-Type: application/json
+```
+**Body** (raw JSON):
+```json
+{
+  "nome": "Empresa Atualizada LTDA",
+  "email": "atualizada@empresa.com.br"
+}
+```
+
+**Resultado Esperado**:
+- Status: `200 OK`
+- Response: Objeto da empresa atualizada
+- Verificar se os campos foram atualizados corretamente
+
+#### 4.2. Atualizar Empresa Inexistente
+
+**Método**: `PUT`  
+**URL**: `http://localhost:8080/api/empresas-parceiras/999`  
+**Headers**: 
+```
+Content-Type: application/json
+```
+**Body** (raw JSON):
+```json
+{
+  "nome": "Empresa Atualizada"
+}
+```
+
+**Resultado Esperado**:
+- Status: `404 Not Found`
+
+---
+
+### 5. **DELETE /api/empresas-parceiras/{id}** - Deletar Empresa
+
+#### 5.1. Deletar Empresa Existente
+
+**Método**: `DELETE`  
+**URL**: `http://localhost:8080/api/empresas-parceiras/1`  
+**Headers**: Nenhum
+
+**Resultado Esperado**:
+- Status: `204 No Content`
+- Response: Vazio
+
+#### 5.2. Deletar Empresa Inexistente
+
+**Método**: `DELETE`  
+**URL**: `http://localhost:8080/api/empresas-parceiras/999`  
+**Headers**: Nenhum
+
+**Resultado Esperado**:
+- Status: `404 Not Found`
+
+---
+
 ## 🔍 Validações Importantes
 
 ### Formato de Dados
 - **CPF**: Deve estar no formato `XXX.XXX.XXX-XX`
 - **RG**: Deve estar no formato `XX.XXX.XXX-X`
+- **CNPJ**: Deve estar no formato `XX.XXX.XXX/XXXX-XX`
 - **Email**: Deve ter formato válido de email
-- **Campos Obrigatórios**: username, senha, nome, cpf, cursoId
+- **Campos Obrigatórios**: username, senha, nome, cpf, cursoId (para Aluno)
+- **Campos Obrigatórios**: username, senha, nome, cnpj (para Empresa Parceira)
 
 ### Códigos de Status HTTP
 - `200 OK`: Operação bem-sucedida
