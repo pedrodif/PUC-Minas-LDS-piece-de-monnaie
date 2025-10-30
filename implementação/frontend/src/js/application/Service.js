@@ -1,7 +1,6 @@
 import { APIClient } from './APIClient.js'
 import { RequestHelper } from '../helper/RequestHelper.js'
 
-
 export class Service {
     constructor(endpoint) {
         this.APIClient = new APIClient(endpoint)
