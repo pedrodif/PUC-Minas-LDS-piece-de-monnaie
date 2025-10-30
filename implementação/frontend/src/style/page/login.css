@@ -14,7 +14,7 @@ main {
 
 section,
 form,
-div {
+.footer {
   width: 36%;
   margin: 0 auto;
 }
@@ -65,7 +65,7 @@ input {
   border-radius: var(--radius);
 }
 
-div {
+.footer {
   grid-area: div;
   display: flex;
   flex-flow: column;

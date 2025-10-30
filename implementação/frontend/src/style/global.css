@@ -42,3 +42,25 @@ button {
 button:hover {
   opacity: var(--btn-opacity);
 }
+
+@keyframes slide-in-out {
+  0% {
+    opacity: 0;
+    transform: translateY(-100px);
+  }
+
+  10% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  80% {
+    opacity: 1;
+    transform: translateY(80px);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+}
