@@ -1,3 +1,5 @@
+import { Loader } from '../presentation/component/Loader.js'
+
 export class RequestHelper {
     static async execute(callback) {
         Loader.getLoader().show()

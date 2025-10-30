@@ -1,0 +1,74 @@
+body {
+  padding: 16px;
+}
+
+main {
+  padding: 140px;
+  display: grid;
+  grid:
+    "section"
+    "form"
+    "div";
+  /* background-color: blue; */
+}
+
+section,
+form,
+div {
+  width: 36%;
+  margin: 0 auto;
+}
+
+section {
+  grid-area: section;
+  padding: 28px;
+  /* background-color: lime; */
+  text-align: center;
+}
+
+img[alt="logo"] {
+  
+}
+
+form {
+  padding: 40px;
+  grid-area: form;
+  /* background-color: purple; */
+  display: grid;
+  grid:
+    "email"
+    "senha"
+    "button";
+  gap: 8px;
+}
+
+fieldset {
+  border: none;
+}
+
+fieldset#email {
+  grid-area: email;
+}
+
+fieldset#senha {
+  grid-area: senha;
+}
+
+button[type="submit"] {
+  grid-area: button;
+}
+
+input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid;
+  border-radius: var(--radius);
+}
+
+div {
+  grid-area: div;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  /* background-color: yellow; */
+}
