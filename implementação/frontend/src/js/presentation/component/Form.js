@@ -3,13 +3,21 @@ export class Form {
         this.formElement = formElement
     }
 
+    clear() {
+        this.formElement.reset()
+    }
+
     getData() {
         const formData = new FormData(this.formElement)
-        const retrievedData = Object.fromEntries(formData.entries())
-
-        for (let key in retrievedData) {
-            retrievedData[key] = retrievedData[key].trim()
-        }
+        const retrievedData = {}
+        
+        formData.forEach((value, key) => {
+            if (retrievedData[key]) {
+                retrievedData[key] = [].concat(retrievedData[key], value)
+            } else {
+                retrievedData[key] = value.trim()
+            }
+        })
 
         return retrievedData
     }
@@ -21,6 +29,7 @@ export class Form {
             event.preventDefault()
             const retrievedData = this.getData()
             await callback(retrievedData)
+            this.clear()
         }
 
         this.formElement.addEventListener('submit', this.handleSubmit)
@@ -30,7 +39,7 @@ export class Form {
         let timeoutId
         return (...args) => {
             clearTimeout(timeoutId)
-            timeoutId = setTimeout(() => { method.apply(null, args) }, delay)
+            timeoutId = setTimeout(() => { method.apply(this, args) }, delay)
         }
     }
 
