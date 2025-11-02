@@ -4,7 +4,14 @@ import { Session } from '../../../middleware/Session.js'
 import { Service } from '../../../application/Service.js'
 
 const form = new Form(document.querySelector('form'))
-const loginService = new Service({ endpoint: '/api/alunos' })
+const loginService = new Service({ 
+    endpoint: '', 
+    toastMessages: {
+        create: {
+            error: 'Erro ao realizar login.'
+        }
+    }
+ })
 
 const handleSubmit = async (data) => {
     const response = await loginService.create(data)
