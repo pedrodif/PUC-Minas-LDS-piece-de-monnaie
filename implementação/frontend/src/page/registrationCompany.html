@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/imask"></script>
+    <script src="https://kit.fontawesome.com/8299ee6007.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../style/global.css">
+    <link rel="stylesheet" href="../style/component/breadcrumb.css">
+    <link rel="stylesheet" href="../style/page/registration-company.css">
+    <title>Cadastro de Empresa</title>
+</head>
+
+<body>
+    <main>
+        <form>
+            <h1>Complete seus dados abaixo e comece sua parceria com o Pièce de Monnaie.</h1>
+
+            <fieldset id="email">
+                <input type="email" name="email" placeholder="Ex: @gmail, @outlook, @icloud.com, etc."
+                    autocomplete="off" required>
+            </fieldset>
+
+            <fieldset id="senha">
+                <input type="password" name="senha" placeholder="Senha" autocomplete="off" required>
+            </fieldset>
+
+            <fieldset id="username">
+                <input type="text" name="username" placeholder="Username" autocomplete="off" required>
+            </fieldset>
+
+            <fieldset id="nome">
+                <input type="text" name="nome" placeholder="Nome" autocomplete="off" required>
+            </fieldset>
+
+            <fieldset id="cnpj">
+                <input type="text" name="cnpj" placeholder="CNPJ" autocomplete="off" required>
+            </fieldset>
+
+            <button type="submit">Cadastrar</button>
+        </form>
+    </main>
+
+    <script type="module" src="../js/presentation/page/registrationCompany/main.js"></script>
+</body>
+
+</html>
