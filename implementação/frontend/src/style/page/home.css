@@ -20,20 +20,20 @@ figcaption {
   font-size: 24px;
 }
 
-div {
+figure div {
   width: 200px;
   padding: 1%;
 }
 
-p {
+figure div p {
   display: none;
 }
 
-i {
+figure div p i {
   font-size: 32px;
 }
 
-button {
+figure div button {
   width: 100%;
   margin-top: 4px;
   border: 2px solid var(--blue-sea);
@@ -42,7 +42,7 @@ button {
 
 section {
   width: 80%;
-  min-height: 320px;
+  min-height: 260px;
   padding: 12px;
   margin: 0 auto;
   border: 1px solid var(--blue-sea);

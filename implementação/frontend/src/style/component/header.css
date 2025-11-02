@@ -12,12 +12,23 @@ img[alt="logo"] {
   animation: fadeSlideUp 0.4s ease-in-out;
 }
 
-span {
-  padding: 8px;
+header div {
   margin-right: 32px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+header div span {
+  padding: 8px;
   border-radius: 20px;
   border: 2px solid var(--blue-sea);
   box-shadow: var(--shadow-default);
   animation: fadeSlideUp 0.4s ease-in-out;
   font-size: 12px;
+}
+
+header div i {
+  cursor: pointer;
+  animation: fadeSlideUp 0.4s ease-in-out;
 }
