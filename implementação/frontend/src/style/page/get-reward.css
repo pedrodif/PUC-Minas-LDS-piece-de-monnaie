@@ -1,0 +1,16 @@
+section {
+  width: 100%;
+  padding: 24px;
+}
+
+h2 {
+  margin: 16px 0;
+  font-weight: 300;
+}
+
+#rewards-container {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(150px, auto));
+  justify-items: center;
+  gap: 24px;
+}
