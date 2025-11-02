@@ -3,6 +3,7 @@
   height: 300px;
   border-radius: var(--radius);
   box-shadow: var(--shadow-default);
+  animation: fadeSlideUp 0.4s ease-in-out;
 }
 
 img[alt="reward-option"] {
