@@ -1,6 +1,6 @@
+import { Url } from '../../../helper/Url.js'
 import { Breadcrumb } from './../../component/Breadcrumb.js'
 import { AnchoredCard } from '../../component/AnchoredCard.js'
-import { Url } from '../../../helper/Url.js'
 
 const routes = Url.mountRoutes()
 const breadcrumb = Breadcrumb.getBreadcrumb()
