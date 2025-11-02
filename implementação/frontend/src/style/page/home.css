@@ -47,6 +47,7 @@ section {
   margin: 0 auto;
   border: 1px solid var(--blue-sea);
   animation: fadeSlideUp 0.4s ease-in-out;
+  border-radius: var(--radius);
 }
 
 h3 {
