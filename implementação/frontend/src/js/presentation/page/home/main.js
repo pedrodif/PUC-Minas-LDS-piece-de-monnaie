@@ -1,6 +1,8 @@
 
+import { Url } from '../../../helper/Url.js'
 import { Session } from './../../../middleware/Session.js'
 
+const routes = Url.mountRoutes()
 const user = Session.userProvider()
 const span = document.querySelector('span')
 const p = document.querySelector('p')
@@ -17,7 +19,7 @@ const BUTTON_CONFIGS = {
     aluno: {
         text: 'Resgatar',
         displayBalance: 'block',
-        onClick: () => window.location.href = '/'
+        onClick: () => window.location.href = routes.getReward
     },
     empresa: {
         text: 'Vantagens',

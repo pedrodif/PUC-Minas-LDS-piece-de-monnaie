@@ -1,10 +1,14 @@
-section {
-  width: 100%;
+main {
   padding: 24px;
 }
 
+section {
+  width: 100%;
+  animation: fadeSlideUp 0.4s ease-in-out;
+}
+
 h2 {
-  margin: 16px 0;
+  margin-bottom: 16px;
   font-weight: 300;
 }
 
