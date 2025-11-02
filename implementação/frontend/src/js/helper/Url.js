@@ -60,5 +60,8 @@ export class Url {
 
     static ENDPOINT_FILES = {
         login: '/',
+        registrationType: '/page/registrationType.html',
+        registrationStudent: '/page/registrationStudent.html',
+        registrationCompany: '/page/registrationCompany.html',
     }
 }

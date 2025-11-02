@@ -10,6 +10,7 @@ main {
 main > section {
   width: 60%;
   text-align: center;
+  animation: fadeSlideUp 0.4s ease-in-out;
 }
 
 h1, h2 {

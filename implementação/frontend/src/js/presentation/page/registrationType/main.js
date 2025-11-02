@@ -9,14 +9,14 @@ const CARDS = [
     {
         id: 1,
         titulo: 'Sou Aluno',
-        // href: rotas.usuarioCNPJ,
+        href: routes.registrationStudent,
         icone: ['fa-solid', 'fa-graduation-cap'],
         descricao: 'Cadastro de aluno para acesso ao Pièce'
     },
     {
         id: 2,
         titulo: 'Sou Empresa',
-        // href: rotas.usuarioCPF,
+        href: routes.registrationCompany,
         icone: ['fa-solid', 'fa-briefcase'],
         descricao: 'Cadastro de empresa para acesso ao Pièce'
     },
