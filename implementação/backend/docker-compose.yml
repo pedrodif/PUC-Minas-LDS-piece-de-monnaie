@@ -11,7 +11,7 @@ services:
    ports:
     - "3307:3306"
    volumes:
-    - ./docker/mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
+    - ./backend/docker/mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
     - db-data:/var/lib/mysql
    healthcheck:
     test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-ppassword"]
@@ -21,7 +21,8 @@ services:
 
  piece_de_monnaie:
    build:
-     context: .
+     context: ./backend
+     dockerfile: Dockerfile
    image: lab-piece-de-monnaie:latest
    container_name: piece_de_monnaie
    depends_on:
@@ -33,6 +34,7 @@ services:
       SPRING_DATASOURCE_PASSWORD: password
    ports:
      - "8080:8080"
+   restart: unless-stopped
 
 volumes:
   db-data:

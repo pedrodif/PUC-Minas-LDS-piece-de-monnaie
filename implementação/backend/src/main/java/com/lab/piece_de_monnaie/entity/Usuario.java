@@ -9,8 +9,10 @@ import lombok.NoArgsConstructor;
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "usuario")
-public abstract class Usuario {
+public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
