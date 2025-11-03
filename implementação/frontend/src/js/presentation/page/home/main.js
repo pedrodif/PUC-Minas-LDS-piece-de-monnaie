@@ -19,7 +19,7 @@ const BUTTON_CONFIGS = {
     empresa: {
         text: 'Vantagens',
         displayBalance: 'none',
-        onClick: () => window.location.href = ''
+        onClick: () => window.location.href = routes.manageReward
     },
     professor: {
         text: 'Meus Alunos',

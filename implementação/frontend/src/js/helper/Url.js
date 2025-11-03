@@ -62,6 +62,7 @@ export class Url {
         login: '/',
         home: '/page/home.html',
         getReward: '/page/getReward.html',
+        manageReward: '/page/manageReward.html',
         registrationType: '/page/registrationType.html',
         registrationStudent: '/page/registrationStudent.html',
         registrationCompany: '/page/registrationCompany.html',
