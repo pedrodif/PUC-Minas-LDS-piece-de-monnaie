@@ -1,0 +1,11 @@
+name: webApp
+
+services:
+  frontend:
+    image: nginx:alpine
+    container_name: piece-de-monnaie
+    restart: always
+    volumes:
+      - ./src:/usr/share/nginx/html:ro
+    ports:
+      - "3001:80"

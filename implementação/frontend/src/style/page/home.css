@@ -1,0 +1,55 @@
+main {
+  width: 100%;
+  display: flex;
+  flex-flow: column;
+  gap: 16px;
+}
+
+figure {
+  width: 80%;
+  margin: 40px auto;
+  padding: 2%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  animation: fadeSlideUp 0.4s ease-in-out;
+}
+
+figcaption {
+  font-weight: 300;
+  font-size: 24px;
+}
+
+figure div {
+  width: 200px;
+  padding: 1%;
+}
+
+figure div p {
+  display: none;
+}
+
+figure div p i {
+  font-size: 32px;
+}
+
+figure div button {
+  width: 100%;
+  margin-top: 4px;
+  border: 2px solid var(--blue-sea);
+  box-shadow: var(--shadow-default);
+}
+
+section {
+  width: 80%;
+  min-height: 260px;
+  padding: 12px;
+  margin: 0 auto;
+  border: 1px solid var(--blue-sea);
+  animation: fadeSlideUp 0.4s ease-in-out;
+  border-radius: var(--radius);
+}
+
+h3 {
+  font-weight: 300;
+}

@@ -1,0 +1,20 @@
+main {
+  padding: 24px;
+}
+
+main > section {
+  width: 100%;
+  animation: fadeSlideUp 0.4s ease-in-out;
+}
+
+h2 {
+  margin-bottom: 16px;
+  font-weight: 300;
+}
+
+#rewards-container {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(150px, auto));
+  justify-items: center;
+  gap: 24px;
+}
