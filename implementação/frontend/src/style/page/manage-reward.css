@@ -1,0 +1,57 @@
+main {
+  padding: 24px;
+}
+
+main > section {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  animation: fadeSlideUp 0.4s ease-in-out;
+}
+
+h2 {
+  margin-bottom: 16px;
+  font-weight: 300;
+}
+
+button[type="button"] {
+  border: 2px solid var(--blue-sea);
+  box-shadow: var(--shadow-default);
+}
+
+form {
+  grid:
+    "descricao descricao descricao"
+    "valor valor valor"
+    "imagem imagem imagem"
+    ". . button";
+}
+
+fieldset#descricao {
+  grid-area: descricao;
+}
+
+fieldset#valor {
+  grid-area: valor;
+}
+
+fieldset#imagem {
+  grid-area: imagem;
+}
+
+.filepond--root {
+  animation: fadeSlideUp 0.4s ease-in-out;
+}
+
+.filepond--browser {
+  animation: none !important;
+}
+
+.filepond--file {
+  background-color: var(--green-glazed) !important;
+}
+
+.filepond--file-action-button {
+  background-color: var(--red-mid) !important;
+}

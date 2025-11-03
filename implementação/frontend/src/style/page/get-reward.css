@@ -2,7 +2,7 @@ main {
   padding: 24px;
 }
 
-section {
+main > section {
   width: 100%;
   animation: fadeSlideUp 0.4s ease-in-out;
 }

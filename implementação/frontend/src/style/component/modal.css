@@ -1,0 +1,102 @@
+.modal {
+  width: 100%;
+  height: 100%;
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  background-color: var(--sobreposicao);
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-conteudo {
+  width: 90%;
+  max-width: 800px;
+  padding: 40px;
+  max-height: 92vh;
+  background: white;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-default);
+  position: relative;
+  overflow-y: auto;
+  overflow: visible;
+}
+
+.fechar {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.modal h2 {
+  margin: 8px;
+  animation: fadeSlideUp 0.4s ease-in-out;
+  font-weight: 300;
+}
+
+.modal h2 > i {
+  margin-right: 12px;
+}
+
+.modal form {
+  display: grid;
+  gap: 16px;
+  width: 100%;
+}
+
+.modal fieldset {
+  border: none;
+  position: relative;
+  display: flex;
+  flex-flow: column;
+  gap: 2px;
+}
+
+.modal input,
+.modal textarea {
+  width: 100%;
+  margin: 5px 0;
+  border-radius: var(--radius);
+  animation: fadeSlideUp 0.4s ease-in-out;
+  background-color: white;
+  border: 1px solid;
+  font-size: 14px;
+  line-height: 1.5;
+  padding: 8px;
+}
+
+.modal textarea {
+  resize: none;
+}
+
+.modal textarea::-webkit-scrollbar {
+  display: none;
+}
+
+.modal input:focus,
+.modal textarea:focus {
+  border-color: var(--gray-mid);
+  outline: none;
+  box-shadow: var(--shadow-focus);
+  transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out,
+    background-color 0.2s ease-in-out;
+}
+
+input:disabled,
+textarea:disabled,
+.choices.is-disabled .choices__inner,
+.choices.is-disabled .choices__list {
+  background-color: var(--gray-mid);
+}
+
+.modal button {
+  grid-area: button;
+  justify-self: end;
+  animation: fadeSlideUp 0.4s ease-in-out;
+  border: 2px solid var(--blue-sea);
+  box-shadow: var(--shadow-default);
+}

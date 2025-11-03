@@ -1,0 +1,78 @@
+table {
+  width: 100%;
+  margin: 16px 0;
+  border-collapse: separate;
+  border-spacing: 0;
+  background-color: white;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-default);
+  font-size: 14px;
+  animation: fadeSlideUp 0.4s ease-in-out;
+}
+
+th,
+td {
+  padding: 12px 16px;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  white-space: normal;
+  word-wrap: break-word;
+}
+
+th {
+  background-color: var(--gray-mid);
+  font-weight: normal;
+}
+
+th > span > i {
+  margin-left: 6px;
+}
+
+tr:hover {
+  background-color: var(--gray-mid);
+  transition: background 0.3s, transform 0.3s;
+}
+
+.acoes i {
+  cursor: pointer;
+  border-radius: var(--radius);
+  transition: background 0.2s;
+  padding: 6px;
+}
+
+.acoes i:hover {
+  color: white;
+  background-color: var(--sobreposicao);
+}
+
+.tfoot {
+  width: 100%;
+  padding: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  animation: fadeSlideUp 0.4s ease-in-out;
+}
+
+.pagina-tabela {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--gray-mid);
+}
+
+.pager-input {
+  width: 70px;
+  height: 40px;
+  padding: 8px;
+  border: 1px solid var(--gray-mid);
+  border-radius: var(--radius);
+  background-color: white;
+}
+
+.pager-input:focus {
+  outline: none;
+  box-shadow: var(--shadow-focus);
+}

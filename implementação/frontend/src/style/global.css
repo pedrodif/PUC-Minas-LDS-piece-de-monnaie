@@ -5,15 +5,20 @@
   --btn-opacity: 0.8;
   --sobreposicao: rgba(0, 0, 0, 0.5);
   --shadow-hover: 0 4px 8px rgba(0, 0, 0, 0.15);
+  --shadow-focus: 0 0 4px rgba(106, 106, 106, 0.2);
   --shadow-default: 0 4px 4px rgba(0, 0, 0, 0.234);
   --blue-sea: #041635;
   --spinner: #ccc;
+  --border: #eaeaea;
   --green-mid: #4caf50;
   --green-light: #2bdb91;
+  --green-glazed: rgba(43, 219, 145, 0.5);
   --red-mid: #f44336;
   --red-light: #ffe8e2;
+  --red-glazed: rgba(255, 99, 132, 0.5);
   --yellow-mid: #ffc107;
   --yellow-light: #f6f6ce;
+  --gray-mid: #969aa3;
 }
 
 html {
@@ -38,6 +43,17 @@ button {
 
 button:hover {
   opacity: var(--btn-opacity);
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes fadeSlideUp {
