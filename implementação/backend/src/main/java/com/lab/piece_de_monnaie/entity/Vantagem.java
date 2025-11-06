@@ -22,10 +22,10 @@ public class Vantagem {
     private Long valor;
 
     @Column(name = "descricao")
-    private Long descricao;
+    private String descricao;
 
     @Column(name = "imagem")
-    private Long imagem;
+    private String imagem;
 
     @ManyToOne
     @JoinColumn(name = "empresa_parceira_id")

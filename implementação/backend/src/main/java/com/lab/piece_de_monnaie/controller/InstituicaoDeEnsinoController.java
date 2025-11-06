@@ -5,6 +5,7 @@ import com.lab.piece_de_monnaie.dto.InstituicaoDeEnsinoResponse;
 import com.lab.piece_de_monnaie.mapper.CursoMapper;
 import com.lab.piece_de_monnaie.mapper.InstituicaoDeEnsinoMapper;
 import com.lab.piece_de_monnaie.service.InstituicaoDeEnsinoService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,16 +16,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/instituicoes")
+@RequiredArgsConstructor
 public class InstituicaoDeEnsinoController {
 
     private final InstituicaoDeEnsinoService instituicaoDeEnsinoService;
     private final InstituicaoDeEnsinoMapper instituicaoDeEnsinoMapper;
-
-    public InstituicaoDeEnsinoController(InstituicaoDeEnsinoService instituicaoDeEnsinoService,
-                                         InstituicaoDeEnsinoMapper instituicaoDeEnsinoMapper) {
-        this.instituicaoDeEnsinoService = instituicaoDeEnsinoService;
-        this.instituicaoDeEnsinoMapper = instituicaoDeEnsinoMapper;
-    }
 
     @GetMapping
     public ResponseEntity<List<InstituicaoDeEnsinoResponse>> findAll() {

@@ -3,17 +3,22 @@ package com.lab.piece_de_monnaie.service;
 import com.lab.piece_de_monnaie.dto.EmpresaParceiraDTO;
 import com.lab.piece_de_monnaie.dto.CreateEmpresaParceiraDTO;
 import com.lab.piece_de_monnaie.dto.UpdateEmpresaParceiraDTO;
+import com.lab.piece_de_monnaie.dto.VantagemRequest;
 import com.lab.piece_de_monnaie.entity.EmpresaParceira;
+import com.lab.piece_de_monnaie.entity.Vantagem;
 import com.lab.piece_de_monnaie.exception.ResourceNotFoundException;
 import com.lab.piece_de_monnaie.mapper.EmpresaParceiraMapper;
+import com.lab.piece_de_monnaie.mapper.VantagemMapper;
 import com.lab.piece_de_monnaie.repository.EmpresaParceiraRepository;
 import com.lab.piece_de_monnaie.repository.UsuarioRepository;
+import com.lab.piece_de_monnaie.repository.VantagemRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -24,7 +29,9 @@ public class EmpresaParceiraService {
     private final UsuarioRepository usuarioRepository;
     private final EmpresaParceiraMapper empresaParceiraMapper;
     private final PasswordEncoder passwordEncoder;
-    
+    private final VantagemMapper vantagemMapper;
+    private final VantagemRepository vantagemRepository;
+
     public List<EmpresaParceiraDTO> findAll() {
         return empresaParceiraRepository.findAll().stream()
                 .map(empresaParceiraMapper::toDTO)
@@ -93,5 +100,14 @@ public class EmpresaParceiraService {
             throw new ResourceNotFoundException("Empresa Parceira não encontrada com ID: " + id);
         }
         empresaParceiraRepository.deleteById(id);
+    }
+
+    public Vantagem cadastrarVantagemEmEmpresaParceira(VantagemRequest vantagemRequest, Long empresaParceiraId) {
+        EmpresaParceira empresaParceira = empresaParceiraRepository.findById(empresaParceiraId)
+                .orElseThrow(() -> new ResourceNotFoundException("Empresa Parceira não encontrada com ID: " + empresaParceiraId));
+
+        Vantagem vantagem = vantagemMapper.toVantagem(vantagemRequest);
+        vantagem.setEmpresaParceira(empresaParceira);
+        return vantagemRepository.save(vantagem);
     }
 }

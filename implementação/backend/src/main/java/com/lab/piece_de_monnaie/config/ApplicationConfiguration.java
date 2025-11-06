@@ -1,6 +1,7 @@
 package com.lab.piece_de_monnaie.config;
 
 import com.lab.piece_de_monnaie.repository.UsuarioRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -12,12 +13,10 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Configuration
+@RequiredArgsConstructor
 public class ApplicationConfiguration {
-    private final UsuarioRepository usuarioRepository;
 
-    public ApplicationConfiguration(UsuarioRepository usuarioRepository) {
-        this.usuarioRepository = usuarioRepository;
-    }
+    private final UsuarioRepository usuarioRepository;
 
     @Bean
     UserDetailsService userDetailsService() {

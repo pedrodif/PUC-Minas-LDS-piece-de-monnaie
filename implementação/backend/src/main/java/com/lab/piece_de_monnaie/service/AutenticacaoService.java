@@ -15,11 +15,13 @@ import com.lab.piece_de_monnaie.repository.AlunoRepository;
 import com.lab.piece_de_monnaie.repository.EmpresaParceiraRepository;
 import com.lab.piece_de_monnaie.repository.ProfessorRepository;
 import com.lab.piece_de_monnaie.repository.UsuarioRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.stereotype.Service;
 
 @Service
+@RequiredArgsConstructor
 public class AutenticacaoService {
 
     private final UsuarioRepository usuarioRepository;
@@ -32,25 +34,6 @@ public class AutenticacaoService {
     private final ProfessorRepository professorRepository;
     private final EmpresaParceiraRepository empresaParceiraRepository;
 
-    public AutenticacaoService(UsuarioRepository usuarioRespository,
-                               AuthenticationManager authenticationManager,
-                               AlunoMapper alunoMapper,
-                               ProfessorMapper professorMapper,
-                               EmpresaParceiraMapper empresaParceiraMapper,
-                               JwtService jwtService,
-                               AlunoRepository alunoRepository,
-                               ProfessorRepository professorRepository,
-                               EmpresaParceiraRepository empresaParceiraRepository) {
-        this.usuarioRepository = usuarioRespository;
-        this.authenticationManager = authenticationManager;
-        this.alunoMapper = alunoMapper;
-        this.professorMapper = professorMapper;
-        this.empresaParceiraMapper = empresaParceiraMapper;
-        this.jwtService = jwtService;
-        this.alunoRepository = alunoRepository;
-        this.professorRepository = professorRepository;
-        this.empresaParceiraRepository = empresaParceiraRepository;
-    }
 
     public LoginResponse autenticar(LoginRequest loginRequest) {
         authenticationManager.authenticate(
