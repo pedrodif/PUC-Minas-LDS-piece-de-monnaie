@@ -1,6 +1,4 @@
-package com.lab.piece_de_monnaie.dto;
-
-import com.lab.piece_de_monnaie.dto.user.UsuarioResponse;
+package com.lab.piece_de_monnaie.dto.auth;
 
 public record LoginResponse (UsuarioResponse usuarioResponse,
                              JwtResponse jwtResponse) {}

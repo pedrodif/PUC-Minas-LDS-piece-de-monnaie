@@ -1,4 +1,4 @@
-package com.lab.piece_de_monnaie.dto;
+package com.lab.piece_de_monnaie.dto.auth;
 
 import jakarta.validation.constraints.NotBlank;
 

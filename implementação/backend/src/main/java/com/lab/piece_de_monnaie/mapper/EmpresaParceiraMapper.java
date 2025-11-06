@@ -3,7 +3,7 @@ package com.lab.piece_de_monnaie.mapper;
 import com.lab.piece_de_monnaie.dto.EmpresaParceiraDTO;
 import com.lab.piece_de_monnaie.dto.CreateEmpresaParceiraDTO;
 import com.lab.piece_de_monnaie.dto.UpdateEmpresaParceiraDTO;
-import com.lab.piece_de_monnaie.dto.user.EmpresaParceiraResponse;
+import com.lab.piece_de_monnaie.dto.auth.EmpresaParceiraResponse;
 import com.lab.piece_de_monnaie.entity.EmpresaParceira;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

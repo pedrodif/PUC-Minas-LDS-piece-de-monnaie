@@ -1,9 +1,8 @@
-package com.lab.piece_de_monnaie.dto.user;
+package com.lab.piece_de_monnaie.dto.auth;
 
 import com.lab.piece_de_monnaie.type.TipoUsuario;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter

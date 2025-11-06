@@ -1,6 +1,8 @@
 package com.lab.piece_de_monnaie.controller;
 
 import com.lab.piece_de_monnaie.dto.*;
+import com.lab.piece_de_monnaie.dto.auth.LoginRequest;
+import com.lab.piece_de_monnaie.dto.auth.LoginResponse;
 import com.lab.piece_de_monnaie.service.AlunoService;
 import com.lab.piece_de_monnaie.service.AutenticacaoService;
 import com.lab.piece_de_monnaie.service.EmpresaParceiraService;

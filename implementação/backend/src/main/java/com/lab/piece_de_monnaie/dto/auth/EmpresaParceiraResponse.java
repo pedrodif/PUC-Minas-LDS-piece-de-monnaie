@@ -1,7 +1,6 @@
-package com.lab.piece_de_monnaie.dto.user;
+package com.lab.piece_de_monnaie.dto.auth;
 
 import com.lab.piece_de_monnaie.type.TipoUsuario;
-import jakarta.persistence.Column;
 import lombok.Getter;
 
 @Getter

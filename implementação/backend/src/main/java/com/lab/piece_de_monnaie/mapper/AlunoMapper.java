@@ -3,7 +3,7 @@ package com.lab.piece_de_monnaie.mapper;
 import com.lab.piece_de_monnaie.dto.AlunoDTO;
 import com.lab.piece_de_monnaie.dto.CreateAlunoDTO;
 import com.lab.piece_de_monnaie.dto.UpdateAlunoDTO;
-import com.lab.piece_de_monnaie.dto.user.AlunoResponse;
+import com.lab.piece_de_monnaie.dto.auth.AlunoResponse;
 import com.lab.piece_de_monnaie.entity.Aluno;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

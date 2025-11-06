@@ -1,9 +1,9 @@
 package com.lab.piece_de_monnaie.service;
 
-import com.lab.piece_de_monnaie.dto.JwtResponse;
-import com.lab.piece_de_monnaie.dto.LoginRequest;
-import com.lab.piece_de_monnaie.dto.LoginResponse;
-import com.lab.piece_de_monnaie.dto.user.UsuarioResponse;
+import com.lab.piece_de_monnaie.dto.auth.JwtResponse;
+import com.lab.piece_de_monnaie.dto.auth.LoginRequest;
+import com.lab.piece_de_monnaie.dto.auth.LoginResponse;
+import com.lab.piece_de_monnaie.dto.auth.UsuarioResponse;
 import com.lab.piece_de_monnaie.entity.Aluno;
 import com.lab.piece_de_monnaie.entity.EmpresaParceira;
 import com.lab.piece_de_monnaie.entity.Professor;
@@ -17,7 +17,6 @@ import com.lab.piece_de_monnaie.repository.ProfessorRepository;
 import com.lab.piece_de_monnaie.repository.UsuarioRepository;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -32,6 +31,7 @@ public class AutenticacaoService {
     private final AlunoRepository alunoRepository;
     private final ProfessorRepository professorRepository;
     private final EmpresaParceiraRepository empresaParceiraRepository;
+
     public AutenticacaoService(UsuarioRepository usuarioRespository,
                                AuthenticationManager authenticationManager,
                                AlunoMapper alunoMapper,
@@ -65,11 +65,18 @@ public class AutenticacaoService {
 
         UsuarioResponse usuarioResponse = null;
         switch (usuario.getTipo()) {
-            case ALUNO: usuarioResponse = getAlunoResponse(usuario.getId());
-            case PROFESSOR: usuarioResponse = getProfessorResponse(usuario.getId());
-            case EMPRESA: usuarioResponse = getEmpresaParceiraResponse(usuario.getId());
-            default: break;
-         }
+            case ALUNO:
+                usuarioResponse = getAlunoResponse(usuario.getId());
+                break;
+            case PROFESSOR:
+                usuarioResponse = getProfessorResponse(usuario.getId());
+                break;
+            case EMPRESA:
+                usuarioResponse = getEmpresaParceiraResponse(usuario.getId());
+                break;
+            default:
+                break;
+        }
 
         return new LoginResponse(usuarioResponse,
                 new JwtResponse(jwtService.gerarToken(usuario)));
@@ -79,10 +86,12 @@ public class AutenticacaoService {
         Aluno aluno = alunoRepository.findById(usuarioId).orElseThrow();
         return alunoMapper.toAlunoResponse(aluno);
     }
+
     private UsuarioResponse getProfessorResponse(Long usuarioId) {
         Professor professor = professorRepository.findById(usuarioId).orElseThrow();
         return professorMapper.toProfessorResponse(professor);
     }
+
     private UsuarioResponse getEmpresaParceiraResponse(Long usuarioId) {
         EmpresaParceira empresaParceira = empresaParceiraRepository.findById(usuarioId).orElseThrow();
         return empresaParceiraMapper.toEmpresaParceiraResponse(empresaParceira);

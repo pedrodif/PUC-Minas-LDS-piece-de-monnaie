@@ -1,4 +1,4 @@
-package com.lab.piece_de_monnaie.dto.user;
+package com.lab.piece_de_monnaie.dto.auth;
 
 import com.lab.piece_de_monnaie.entity.Curso;
 import com.lab.piece_de_monnaie.type.TipoUsuario;
