@@ -31,12 +31,6 @@ public class EmpresaParceiraController {
         return ResponseEntity.ok(empresa);
     }
     
-    @PostMapping
-    public ResponseEntity<EmpresaParceiraDTO> create(@Valid @RequestBody CreateEmpresaParceiraDTO createEmpresaParceiraDTO) {
-        EmpresaParceiraDTO empresa = empresaParceiraService.create(createEmpresaParceiraDTO);
-        return ResponseEntity.status(HttpStatus.CREATED).body(empresa);
-    }
-    
     @PutMapping("/{id}")
     public ResponseEntity<EmpresaParceiraDTO> update(@PathVariable Long id, @Valid @RequestBody UpdateEmpresaParceiraDTO updateEmpresaParceiraDTO) {
         EmpresaParceiraDTO empresa = empresaParceiraService.update(id, updateEmpresaParceiraDTO);

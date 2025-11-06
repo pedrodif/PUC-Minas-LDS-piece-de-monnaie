@@ -9,6 +9,7 @@ import com.lab.piece_de_monnaie.mapper.EmpresaParceiraMapper;
 import com.lab.piece_de_monnaie.repository.EmpresaParceiraRepository;
 import com.lab.piece_de_monnaie.repository.UsuarioRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,6 +23,7 @@ public class EmpresaParceiraService {
     private final EmpresaParceiraRepository empresaParceiraRepository;
     private final UsuarioRepository usuarioRepository;
     private final EmpresaParceiraMapper empresaParceiraMapper;
+    private final PasswordEncoder passwordEncoder;
     
     public List<EmpresaParceiraDTO> findAll() {
         return empresaParceiraRepository.findAll().stream()
@@ -54,7 +56,7 @@ public class EmpresaParceiraService {
         // Criar empresa parceira (que herda de Usuario)
         EmpresaParceira empresaParceira = new EmpresaParceira();
         empresaParceira.setUsername(createEmpresaParceiraDTO.getUsername());
-        empresaParceira.setSenha(createEmpresaParceiraDTO.getSenha());
+        empresaParceira.setSenha(passwordEncoder.encode(createEmpresaParceiraDTO.getSenha()));
         empresaParceira.setNome(createEmpresaParceiraDTO.getNome());
         empresaParceira.setCnpj(createEmpresaParceiraDTO.getCnpj());
         empresaParceira.setEmail(createEmpresaParceiraDTO.getEmail());

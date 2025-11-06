@@ -11,6 +11,7 @@ import com.lab.piece_de_monnaie.repository.AlunoRepository;
 import com.lab.piece_de_monnaie.repository.CursoRepository;
 import com.lab.piece_de_monnaie.repository.UsuarioRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,6 +26,7 @@ public class AlunoService {
     private final CursoRepository cursoRepository;
     private final UsuarioRepository usuarioRepository;
     private final AlunoMapper alunoMapper;
+    private final PasswordEncoder passwordEncoder;
     
     public List<AlunoDTO> findAll() {
         return alunoRepository.findAll().stream()
@@ -56,7 +58,7 @@ public class AlunoService {
         // Criar aluno (que herda de Usuario)
         Aluno aluno = new Aluno();
         aluno.setUsername(createAlunoDTO.getUsername());
-        aluno.setSenha(createAlunoDTO.getSenha());
+        aluno.setSenha(passwordEncoder.encode(createAlunoDTO.getSenha()));
         aluno.setNome(createAlunoDTO.getNome());
         aluno.setCpf(createAlunoDTO.getCpf());
         aluno.setRg(createAlunoDTO.getRg());

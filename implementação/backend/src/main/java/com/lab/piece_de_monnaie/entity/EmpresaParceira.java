@@ -1,5 +1,6 @@
 package com.lab.piece_de_monnaie.entity;
 
+import com.lab.piece_de_monnaie.type.TipoUsuario;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -17,4 +18,9 @@ public class EmpresaParceira extends Usuario {
     
     @Column(name = "email", unique = true)
     private String email;
+
+    @PrePersist
+    public void prePersist() {
+        super.setTipo(TipoUsuario.EMPRESA);
+    }
 }

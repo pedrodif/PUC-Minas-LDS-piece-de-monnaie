@@ -13,13 +13,17 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Table(name = "curso")
 public class Curso {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column(name = "nome")
     private String nome;
+
     @Column(name = "departamento")
     private String departamento;
+
     @ManyToOne
     @JoinColumn(name = "instituicao_ensino_id")
     private InstituicaoDeEnsino instituicaoDeEnsino;

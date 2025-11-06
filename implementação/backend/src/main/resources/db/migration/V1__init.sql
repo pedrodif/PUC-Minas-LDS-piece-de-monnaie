@@ -21,35 +21,32 @@ CREATE TABLE curso (
 );
 
 CREATE TABLE professor (
-    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    id BIGINT PRIMARY KEY,
     CPF VARCHAR(14) NOT NULL UNIQUE,
     departamento VARCHAR(255),
     quantidade_moeda BIGINT DEFAULT 0,
-    usuario_id BIGINT NOT NULL,
     instituicao_ensino_id BIGINT NOT NULL,
-    FOREIGN KEY (usuario_id) REFERENCES usuario(id),
+    FOREIGN KEY (id) REFERENCES usuario(id),
     FOREIGN KEY (instituicao_ensino_id) REFERENCES instituicao_ensino(id)
 );
 
 CREATE TABLE aluno (
-    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    id BIGINT PRIMARY KEY,
     CPF VARCHAR(14) NOT NULL UNIQUE,
     RG VARCHAR(12) UNIQUE,
     email VARCHAR(255) UNIQUE,
     endereco VARCHAR(255),
     quantidade_moeda BIGINT DEFAULT 0,
-    usuario_id BIGINT NOT NULL,
     curso_id BIGINT NOT NULL,
-    FOREIGN KEY (usuario_id) REFERENCES usuario(id),
+    FOREIGN KEY (id) REFERENCES usuario(id),
     FOREIGN KEY (curso_id) REFERENCES curso(id)
 );
 
 CREATE TABLE empresa_parceira (
-    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    id BIGINT PRIMARY KEY,
     CNPJ VARCHAR(18) NOT NULL UNIQUE,
     email VARCHAR(255) UNIQUE,
-    usuario_id BIGINT NOT NULL,
-    FOREIGN KEY (usuario_id) REFERENCES usuario(id)
+    FOREIGN KEY (id) REFERENCES usuario(id)
 );
 
 
