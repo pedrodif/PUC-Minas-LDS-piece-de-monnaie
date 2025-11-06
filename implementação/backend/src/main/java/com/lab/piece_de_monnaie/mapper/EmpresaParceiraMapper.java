@@ -3,6 +3,7 @@ package com.lab.piece_de_monnaie.mapper;
 import com.lab.piece_de_monnaie.dto.EmpresaParceiraDTO;
 import com.lab.piece_de_monnaie.dto.CreateEmpresaParceiraDTO;
 import com.lab.piece_de_monnaie.dto.UpdateEmpresaParceiraDTO;
+import com.lab.piece_de_monnaie.dto.user.EmpresaParceiraResponse;
 import com.lab.piece_de_monnaie.entity.EmpresaParceira;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -20,4 +21,6 @@ public interface EmpresaParceiraMapper {
     EmpresaParceira toEntity(CreateEmpresaParceiraDTO createEmpresaParceiraDTO);
     
     void updateEntity(UpdateEmpresaParceiraDTO updateEmpresaParceiraDTO, @MappingTarget EmpresaParceira empresaParceira);
+
+    EmpresaParceiraResponse toEmpresaParceiraResponse(EmpresaParceira empresaParceira);
 }
