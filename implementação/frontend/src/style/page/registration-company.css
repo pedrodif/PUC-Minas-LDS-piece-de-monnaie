@@ -12,12 +12,19 @@ form {
   padding: 32px;
   display: grid;
   grid:
+    "logo logo logo"
     "h1 h1 h1"
     "email email senha"
     "username nome cnpj"
     "button button button";
   gap: 4px;
   animation: fadeSlideUp 0.4s ease-in-out;
+}
+
+img[alt="logo"] {
+  width: 100px;
+  height: 100px;
+  grid-area: logo;
 }
 
 form h1 {
