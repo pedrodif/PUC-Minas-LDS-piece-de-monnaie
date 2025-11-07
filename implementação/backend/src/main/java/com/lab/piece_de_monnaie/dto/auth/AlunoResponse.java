@@ -15,6 +15,7 @@ public class AlunoResponse extends UsuarioResponse {
     private final Long quantidadeMoeda;
     private final Curso curso;
     public AlunoResponse(Long id,
+                  String nome,
                   String username,
                   String cpf,
                   String rg,
@@ -22,7 +23,7 @@ public class AlunoResponse extends UsuarioResponse {
                   String endereco,
                   Long quantidadeMoeda,
                   Curso curso) {
-        super(id, username, TipoUsuario.ALUNO);
+        super(id, username, nome, TipoUsuario.ALUNO);
         this.cpf = cpf;
         this.rg = rg;
         this.email = email;

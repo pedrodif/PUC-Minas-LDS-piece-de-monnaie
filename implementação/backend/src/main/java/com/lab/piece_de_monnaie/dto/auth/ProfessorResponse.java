@@ -13,11 +13,12 @@ public class ProfessorResponse extends UsuarioResponse {
     private final InstituicaoDeEnsino instituicaoDeEnsino;
     public ProfessorResponse(Long id,
                              String username,
+                             String nome,
                              String cpf,
                              String departamento,
                              Long quantidadeMoeda,
                              InstituicaoDeEnsino instituicaoDeEnsino) {
-        super(id, username, TipoUsuario.PROFESSOR);
+        super(id, username, nome, TipoUsuario.PROFESSOR);
         this.cpf = cpf;
         this.departamento = departamento;
         this.quantidadeMoeda = quantidadeMoeda;
