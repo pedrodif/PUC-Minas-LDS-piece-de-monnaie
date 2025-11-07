@@ -11,17 +11,17 @@ const button = document.querySelector('button')
 const figcaption = document.querySelector('figcaption')
 
 const BUTTON_CONFIGS = {
-    aluno: {
+    ALUNO: {
         text: 'Resgatar',
         displayBalance: 'block',
         onClick: () => window.location.href = routes.getReward
     },
-    empresa: {
+    EMPRESA: {
         text: 'Vantagens',
         displayBalance: 'none',
         onClick: () => window.location.href = routes.manageReward
     },
-    professor: {
+    PROFESSOR: {
         text: 'Meus Alunos',
         displayBalance: 'block',
         onClick: () => window.location.href = ''
@@ -29,9 +29,9 @@ const BUTTON_CONFIGS = {
 }
 
 const customizeEnvironment = () => {
-    button.textContent = BUTTON_CONFIGS['aluno'].text
-    button.onclick = BUTTON_CONFIGS['aluno'].onClick
-    p.style.display = BUTTON_CONFIGS['aluno'].displayBalance
+    button.textContent = BUTTON_CONFIGS[user.tipo].text
+    button.onclick = BUTTON_CONFIGS[user.tipo].onClick
+    p.style.display = BUTTON_CONFIGS[user.tipo].displayBalance
     figcaption.textContent = `Seja bem vindo(a) ao Pièce de Monnaie ${user.nome}`
 }
 

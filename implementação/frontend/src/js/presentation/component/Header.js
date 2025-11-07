@@ -13,7 +13,7 @@ export class Header {
         img.alt = 'logo'
 
         const span = document.createElement('span')
-        span.textContent = Header.USER_TYPE['aluno']
+        span.textContent = Header.USER_TYPE[this.user.tipo]
 
         const i = document.createElement('i')
         i.classList.add('fa-solid', 'fa-arrow-right-from-bracket')
@@ -33,8 +33,8 @@ export class Header {
     }
 
     static USER_TYPE = {
-        aluno: 'Aluno',
-        empresa: 'Empresa',
-        professor: 'Professor'
+        ALUNO: 'Aluno',
+        EMPRESA: 'Empresa',
+        PROFESSOR: 'Professor'
     }
 }
