@@ -102,6 +102,10 @@ public class EmpresaParceiraService {
         empresaParceiraRepository.deleteById(id);
     }
 
+    public List<Vantagem> findAllVantagensByEmpresaParceiraId(Long empresaParceiraId) {
+        return vantagemRepository.findAllByEmpresaParceiraId(empresaParceiraId);
+    }
+
     public Vantagem cadastrarVantagemEmEmpresaParceira(VantagemRequest vantagemRequest, Long empresaParceiraId) {
         EmpresaParceira empresaParceira = empresaParceiraRepository.findById(empresaParceiraId)
                 .orElseThrow(() -> new ResourceNotFoundException("Empresa Parceira não encontrada com ID: " + empresaParceiraId));
