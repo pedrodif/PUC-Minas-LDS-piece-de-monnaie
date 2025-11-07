@@ -44,9 +44,19 @@ public class EmpresaParceiraController {
         return ResponseEntity.noContent().build();
     }
 
+    @GetMapping("/{empresaParceiraId}/vantagens")
+    public ResponseEntity<List<VantagemResponse>> getVantagens(@PathVariable Long empresaParceiraId) {
+        return ResponseEntity.ok((empresaParceiraService.findAllVantagensByEmpresaParceiraId
+                (empresaParceiraId)
+                .stream()
+                .map(vantagemMapper::toVantagemResponse)
+                .toList()));
+    }
+
     @PostMapping("/{empresaParceiraId}/vantagens")
     public ResponseEntity<VantagemResponse> addVantagem(@PathVariable Long empresaParceiraId,
                                                         @RequestBody @Valid VantagemRequest vantagemRequest) {
-        return ResponseEntity.ok(vantagemMapper.toVantagemResponse(empresaParceiraService.cadastrarVantagemEmEmpresaParceira(vantagemRequest, empresaParceiraId)));
+        return ResponseEntity.ok(vantagemMapper.toVantagemResponse
+                (empresaParceiraService.cadastrarVantagemEmEmpresaParceira(vantagemRequest, empresaParceiraId)));
     }
 }
