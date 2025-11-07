@@ -21,7 +21,7 @@ figcaption {
 }
 
 figure div {
-  width: 200px;
+  width: 220px;
   padding: 1%;
 }
 
@@ -36,8 +36,13 @@ figure div p i {
 figure div button {
   width: 100%;
   margin-top: 4px;
-  border: 2px solid var(--purple-trouble);
   box-shadow: var(--shadow-default);
+  background-color: var(--purple-trouble);
+  color: white;
+}
+
+figure div button i {
+  color: white;
 }
 
 section {

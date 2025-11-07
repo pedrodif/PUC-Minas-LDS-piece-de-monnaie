@@ -53,6 +53,8 @@ fieldset#cnpj {
 button[type="submit"] {
   grid-area: button;
   box-shadow: var(--shadow-default);
+  background-color: var(--purple-trouble);
+  color: white;
 }
 
 input {

@@ -28,8 +28,13 @@ img[alt="reward-option"] {
 .reward-card div button {
   padding: 8px;
   border-radius: 20px;
-  border: 2px solid var(--blue-sea);
   box-shadow: var(--shadow-default);
   font-size: 12px;
-  background-color: white;
+  background-color: var(--purple-trouble);
+  color: white;
+}
+
+.reward-card div button i {
+  color: white;
+  margin-left: 4px;
 }

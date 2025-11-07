@@ -12,12 +12,12 @@ const figcaption = document.querySelector('figcaption')
 
 const BUTTON_CONFIGS = {
     ALUNO: {
-        text: 'Resgatar Vantagens',
+        text: '<i class="fa-solid fa-hand-holding-heart"></i> Resgatar Vantagens',
         displayBalance: 'block',
         onClick: () => window.location.href = routes.getReward
     },
     EMPRESA: {
-        text: 'Gerenciar Vantagens',
+        text: '<i class="fa-solid fa-hands-holding-circle"></i> Gerenciar Vantagens',
         displayBalance: 'none',
         onClick: () => window.location.href = routes.manageReward
     },
@@ -29,7 +29,7 @@ const BUTTON_CONFIGS = {
 }
 
 const customizeEnvironment = () => {
-    button.textContent = BUTTON_CONFIGS[user.tipo].text
+    button.innerHTML = BUTTON_CONFIGS[user.tipo].text
     button.onclick = BUTTON_CONFIGS[user.tipo].onClick
     p.style.display = BUTTON_CONFIGS[user.tipo].displayBalance
     figcaption.textContent = `Seja bem vindo(a) ao Pièce de Monnaie ${user.nome}`
