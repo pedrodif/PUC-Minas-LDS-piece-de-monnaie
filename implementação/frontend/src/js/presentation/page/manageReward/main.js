@@ -7,12 +7,14 @@ import { Header } from '../../component/Header.js'
 import { Dialog } from '../../component/Dialog.js'
 import { Service } from '../../../application/Service.js'
 import { Breadcrumb } from '../../component/Breadcrumb.js'
+import { Session } from '../../../middleware/Session.js'
 
 const routes = Url.mountRoutes()
 const breadcrumb = Breadcrumb.getBreadcrumb()
 const openModalButton = document.querySelector('.abrir')
 
 const header = new Header()
+const user = Session.userProvider()
 const form = new Form(document.querySelector('form'))
 const table = new Table(document.querySelector('table'))
 const modal = new Modal(document.querySelector('#modal'))
@@ -165,6 +167,6 @@ table.empty = new Empty({
 })
 
 const data = rewardService.getAll()
-table.render(data)
+table.render([])
 
 openModalButton.addEventListener('click', openModal)
