@@ -13,15 +13,20 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Table(name = "vantagem")
 public class Vantagem {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column(name = "valor")
     private Long valor;
+
     @Column(name = "descricao")
-    private Long descricao;
+    private String descricao;
+
     @Column(name = "imagem")
-    private Long imagem;
+    private String imagem;
+
     @ManyToOne
     @JoinColumn(name = "empresa_parceira_id")
     private EmpresaParceira empresaParceira;

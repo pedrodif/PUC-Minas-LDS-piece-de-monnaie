@@ -16,24 +16,32 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Table(name = "transacao")
 public class Transacao {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column(name = "montante")
     private Long montante;
+
     @Column(name = "feitaEm")
     private LocalDateTime feitaEm;
+
     @Column(name = "mensagem")
     private String mensagem;
+
     @Column(name = "tipo")
     @Enumerated(EnumType.STRING)
     private TipoTransacao tipo;
+
     @ManyToOne
     @JoinColumn(name = "vantagem_id")
     private Vantagem vantagem;
+
     @ManyToOne
     @JoinColumn(name = "emissor_id", nullable = false)
     private Usuario emissor;
+
     @ManyToOne
     @JoinColumn(name = "receptor_id", nullable = false)
     private Usuario receptor;

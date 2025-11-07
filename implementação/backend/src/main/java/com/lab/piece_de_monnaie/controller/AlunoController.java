@@ -31,12 +31,6 @@ public class AlunoController {
         return ResponseEntity.ok(aluno);
     }
     
-    @PostMapping
-    public ResponseEntity<AlunoDTO> create(@Valid @RequestBody CreateAlunoDTO createAlunoDTO) {
-        AlunoDTO aluno = alunoService.create(createAlunoDTO);
-        return ResponseEntity.status(HttpStatus.CREATED).body(aluno);
-    }
-    
     @PutMapping("/{id}")
     public ResponseEntity<AlunoDTO> update(@PathVariable Long id, @Valid @RequestBody UpdateAlunoDTO updateAlunoDTO) {
         AlunoDTO aluno = alunoService.update(id, updateAlunoDTO);

@@ -16,8 +16,8 @@ form {
     "nome nome senha"
     "email email username"
     "cpf cpf rg"
+    "curso curso curso"
     "endereco endereco endereco"
-    "instituicao instituicao curso"
     "button button button";
   gap: 4px;
   animation: fadeSlideUp 0.4s ease-in-out;
@@ -57,16 +57,12 @@ fieldset#rg {
   grid-area: rg;
 }
 
-fieldset#endereco {
-  grid-area: endereco;
-}
-
-fieldset#instituicao {
-  grid-area: instituicao;
-}
-
 fieldset#curso {
   grid-area: curso;
+}
+
+fieldset#endereco {
+  grid-area: endereco;
 }
 
 button[type="submit"] {
@@ -74,9 +70,14 @@ button[type="submit"] {
   box-shadow: var(--shadow-default);
 }
 
-input {
+input,
+select {
   width: 100%;
   padding: 8px;
   border: 1px solid;
   border-radius: var(--radius);
+}
+
+select {
+  padding: 6px;
 }

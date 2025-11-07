@@ -1,5 +1,6 @@
 package com.lab.piece_de_monnaie.entity;
 
+import com.lab.piece_de_monnaie.type.TipoUsuario;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -30,4 +31,9 @@ public class Aluno extends Usuario {
     @ManyToOne
     @JoinColumn(name = "curso_id")
     private Curso curso;
+
+    @PrePersist
+    public void prePersist() {
+        super.setTipo(TipoUsuario.ALUNO);
+    }
 }
