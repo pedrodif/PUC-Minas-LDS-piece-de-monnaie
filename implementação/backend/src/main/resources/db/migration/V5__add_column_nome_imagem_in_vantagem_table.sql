@@ -1,0 +1,1 @@
+ALTER TABLE vantagem ADD COLUMN nome_imagem LONGTEXT;

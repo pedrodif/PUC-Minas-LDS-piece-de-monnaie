@@ -8,5 +8,6 @@ public record VantagemRequest(
         Long valor,
         @NotBlank
         String descricao,
+        String nomeImagem,
         String imagem) {
 }
