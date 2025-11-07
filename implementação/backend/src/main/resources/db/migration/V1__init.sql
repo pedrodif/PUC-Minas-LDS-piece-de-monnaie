@@ -54,7 +54,7 @@ CREATE TABLE vantagem (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     valor BIGINT NOT NULL,
     descricao VARCHAR(255),
-    imagem VARCHAR(255),
+    imagem LONGTEXT,
     empresa_parceira_id BIGINT NOT NULL,
     FOREIGN KEY (empresa_parceira_id) REFERENCES empresa_parceira(id)
 );

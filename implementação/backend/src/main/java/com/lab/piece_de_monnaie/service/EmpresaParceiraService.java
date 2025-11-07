@@ -103,6 +103,9 @@ public class EmpresaParceiraService {
     }
 
     public List<Vantagem> findAllVantagensByEmpresaParceiraId(Long empresaParceiraId) {
+        if(!empresaParceiraRepository.existsById(empresaParceiraId)) {
+            throw new ResourceNotFoundException("Empresa Parceira não encontrada com ID: " + empresaParceiraId);
+        }
         return vantagemRepository.findAllByEmpresaParceiraId(empresaParceiraId);
     }
 
