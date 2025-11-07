@@ -17,7 +17,7 @@ form {
     "email email username"
     "cpf cpf rg"
     "endereco endereco endereco"
-    "instituicao instituicao curso"
+    "curso curso curso"
     "button button button";
   gap: 4px;
   animation: fadeSlideUp 0.4s ease-in-out;
@@ -59,10 +59,6 @@ fieldset#rg {
 
 fieldset#endereco {
   grid-area: endereco;
-}
-
-fieldset#instituicao {
-  grid-area: instituicao;
 }
 
 fieldset#curso {
