@@ -17,10 +17,6 @@ export class Notifier {
         Toast.getToast().show(message, 'info')
     }
 
-    static response() {
-        throw new Error('Método requestResponse deve ser implementado nas classes filhas.')
-    }
-
     static response(response, variant, options) {
         if (response?.error) {
             Notifier.error(response.error)

@@ -10,11 +10,11 @@ const CNPJInput = document.querySelector('input[name="cnpj"]')
 const passwordInput = document.querySelector('input[type="password"]')
 
 const companyService = new Service({
-    endpoint: '/api/empresas-parceiras',
+    endpoint: '/api/auth/parceiro',
     toastMessages: {
         create: {
             error: 'Erro ao cadastrar nova empresa.',
-            success: 'Novo empresa cadastrada com sucesso!'
+            success: 'Nova empresa cadastrada com sucesso!'
         }
     }
 })
