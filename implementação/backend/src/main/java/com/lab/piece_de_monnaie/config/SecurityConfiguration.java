@@ -33,6 +33,8 @@ public class SecurityConfiguration {
                     authorizeConfig
                             .requestMatchers(HttpMethod.POST, "/api/empresas-parceiras/*/vantagens")
                             .hasAuthority("EMPRESA")
+                            .requestMatchers(HttpMethod.PUT, "/api/empresas-parceiras/*/vantagens")
+                            .hasAuthority("EMPRESA")
                             .requestMatchers("/api/auth/**")
                             .permitAll()
                             .anyRequest()

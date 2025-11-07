@@ -32,7 +32,8 @@ public class EmpresaParceiraController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<EmpresaParceiraDTO> update(@PathVariable Long id, @Valid @RequestBody UpdateEmpresaParceiraDTO updateEmpresaParceiraDTO) {
+    public ResponseEntity<EmpresaParceiraDTO> update(@PathVariable Long id,
+                                                     @Valid @RequestBody UpdateEmpresaParceiraDTO updateEmpresaParceiraDTO) {
         EmpresaParceiraDTO empresa = empresaParceiraService.update(id, updateEmpresaParceiraDTO);
         return ResponseEntity.ok(empresa);
     }
@@ -44,7 +45,8 @@ public class EmpresaParceiraController {
     }
 
     @PostMapping("/{empresaParceiraId}/vantagens")
-    public ResponseEntity<VantagemResponse> addVantagem(@PathVariable Long empresaParceiraId, @RequestBody VantagemRequest vantagemRequest) {
+    public ResponseEntity<VantagemResponse> addVantagem(@PathVariable Long empresaParceiraId,
+                                                        @RequestBody @Valid VantagemRequest vantagemRequest) {
         return ResponseEntity.ok(vantagemMapper.toVantagemResponse(empresaParceiraService.cadastrarVantagemEmEmpresaParceira(vantagemRequest, empresaParceiraId)));
     }
 }

@@ -1,15 +1,14 @@
 package com.lab.piece_de_monnaie.controller;
 
+import com.lab.piece_de_monnaie.dto.VantagemRequest;
 import com.lab.piece_de_monnaie.dto.VantagemResponse;
 import com.lab.piece_de_monnaie.entity.Vantagem;
 import com.lab.piece_de_monnaie.mapper.VantagemMapper;
 import com.lab.piece_de_monnaie.service.VantagemService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -35,5 +34,19 @@ public class VantagemController {
                                 .body(vantagemMapper
                                         .toVantagemResponse(vantagem)))
                 .orElse(ResponseEntity.notFound().build());
+    }
+
+    @PutMapping("/{vantagemId}")
+    public ResponseEntity<VantagemResponse> update(@PathVariable Long vantagemId,
+                                                   @RequestBody @Valid VantagemRequest vantagemRequest) {
+        return ResponseEntity.ok(vantagemMapper
+                .toVantagemResponse(vantagemService
+                        .update(vantagemRequest, vantagemId)));
+    }
+
+    @DeleteMapping("/{vantagemId}")
+    public ResponseEntity<Void> deleteById(@PathVariable Long vantagemId) {
+        vantagemService.deleteById(vantagemId);
+        return ResponseEntity.ok().build();
     }
 }

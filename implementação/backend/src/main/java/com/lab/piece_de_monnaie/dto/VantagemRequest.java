@@ -1,12 +1,12 @@
 package com.lab.piece_de_monnaie.dto;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 public record VantagemRequest(
-        @NotBlank
+        @NotNull
         Long valor,
         @NotBlank
         String descricao,
-        @NotBlank
         String imagem) {
 }
