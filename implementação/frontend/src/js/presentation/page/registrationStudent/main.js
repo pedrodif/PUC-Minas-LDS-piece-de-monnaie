@@ -9,9 +9,11 @@ const form = new Form(document.querySelector('form'))
 const RGInput = document.querySelector('input[name="rg"]')
 const CPFInput = document.querySelector('input[name="cpf"]')
 const passwordInput = document.querySelector('input[type="password"]')
+const cursoSelect = document.querySelector('select[name="cursoId"]')
 
+const cursoService = new Service({ endpoint: '/api/cursos' })
 const alunoService = new Service({
-    endpoint: '/api/alunos',
+    endpoint: '/api/auth/aluno',
     toastMessages: {
         create: {
             error: 'Erro ao cadastrar novo aluno.',
@@ -30,6 +32,9 @@ breadcrumb.add([
         link: routes.registrationType
     }
 ])
+
+const cursos = await cursoService.getAll()
+console.log(cursos)
 
 const handleSubmit = async (data) => {
     await alunoService.create(data)
