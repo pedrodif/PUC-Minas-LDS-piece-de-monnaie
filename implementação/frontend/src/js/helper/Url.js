@@ -1,7 +1,9 @@
 export class Url {
     static getParams() {
         const urlParams = new URLSearchParams(window.location.search)
-        return {}
+        return {
+            modo: urlParams.get('modo')
+        }
     }
 
     static addQueryParam(param, value) {

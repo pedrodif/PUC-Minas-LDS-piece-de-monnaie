@@ -31,7 +31,7 @@ breadcrumb.add([
     }
 ])
 
-const data = rewardService.getAll()
+const data = await rewardService.getAll()
 
 if (data.length > 0) {
     emptyContainer.style.display = 'none'

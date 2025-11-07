@@ -12,12 +12,12 @@ const figcaption = document.querySelector('figcaption')
 
 const BUTTON_CONFIGS = {
     ALUNO: {
-        text: 'Resgatar',
+        text: 'Resgatar Vantagens',
         displayBalance: 'block',
         onClick: () => window.location.href = routes.getReward
     },
     EMPRESA: {
-        text: 'Vantagens',
+        text: 'Gerenciar Vantagens',
         displayBalance: 'none',
         onClick: () => window.location.href = routes.manageReward
     },

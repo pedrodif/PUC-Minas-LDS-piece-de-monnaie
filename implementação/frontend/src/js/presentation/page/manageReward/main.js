@@ -5,25 +5,29 @@ import { Modal } from '../../component/Modal.js'
 import { Empty } from '../../component/Empty.js'
 import { Header } from '../../component/Header.js'
 import { Dialog } from '../../component/Dialog.js'
+import { Session } from '../../../middleware/Session.js'
 import { Service } from '../../../application/Service.js'
 import { Breadcrumb } from '../../component/Breadcrumb.js'
-import { Session } from '../../../middleware/Session.js'
+import { Utilities } from '../../../helper/Utilities.js'
 
 const routes = Url.mountRoutes()
+const user = Session.userProvider()
 const breadcrumb = Breadcrumb.getBreadcrumb()
 const openModalButton = document.querySelector('.abrir')
 
 const header = new Header()
-const user = Session.userProvider()
 const form = new Form(document.querySelector('form'))
 const table = new Table(document.querySelector('table'))
 const modal = new Modal(document.querySelector('#modal'))
 const dialog = new Dialog('Deseja deletar essa vantagem?')
 
+let retrievedData = null
+let originalBase64Image = null
+
 FilePond.registerPlugin(FilePondPluginFileEncode)
 const fileUploader = FilePond.create(document.querySelector('.filepond'), {
     allowMultiple: false,
-    acceptedFileTypes: ['image/*'],
+    acceptedFileTypes: ['image/jpg'],
     labelIdle: `Arraste e solte sua imagem aqui ou <span class="filepond--label-action">buscar</span>`,
     labelFileProcessing: 'Enviando arquivo...',
     labelFileLoadError: 'Erro ao carregar o arquivo.',
@@ -32,13 +36,23 @@ const fileUploader = FilePond.create(document.querySelector('.filepond'), {
     allowFileEncode: true
 })
 
-const rewardService = new Service({
-    endpoint: '',
+const companyService = new Service({
+    endpoint: `/api/empresas-parceiras/${user.id}/vantagens`,
     toastMessages: {
+        list: {
+            error: 'Erro ao listar vantagens.',
+            success: 'Vantagens listadas com sucesso!',
+        },
         create: {
             error: 'Erro ao cadastrar vantagem.',
             success: 'Vantagem cadastrada com sucesso!',
-        },
+        }
+    }
+})
+
+const rewardService = new Service({
+    endpoint: '/api/vantagens',
+    toastMessages: {
         delete: {
             error: 'Erro ao deletar vantagem.',
             success: 'Vantagem deletada com sucesso!',
@@ -46,10 +60,6 @@ const rewardService = new Service({
         update: {
             error: 'Erro ao atualizar vantagem.',
             success: 'Vantagem atualizada com sucesso!',
-        },
-        list: {
-            error: 'Erro ao listar vantagens.',
-            success: 'Vantagens listadas com sucesso!',
         },
         retrieve: {
             error: 'Erro ao recuperar vantagem.',
@@ -74,23 +84,25 @@ const fillForm = (data = {}) => {
     requestAnimationFrame(() => form.setInitialValues(data))
 }
 
-const handleSubmit = async (retrievedData) => {
-    const { descricao, valor } = retrievedData
-
+const handleSubmit = async (data) => {
     const files = fileUploader.getFiles()
-    const base64 = files.length > 0 ? files[0].getFileEncodeBase64String() : null
+    const base64 = files[0].getFileEncodeBase64String()
 
-    const data = {
-        descricao,
-        valor,
-        imagem: base64
-    }
-
+    let response
     const { modo } = Url.getParams()
-    const response = modo === 'detalhes'
-        ? await rewardService.update(data)
-        : await rewardService.create(data)
 
+    if (modo === 'detalhes') {
+        response = await rewardService.update({
+            ...retrievedData,
+            ...data,
+            imagem: originalBase64Image
+        })
+    } else {
+        response = await companyService.create({
+            ...data,
+            imagem: base64
+        })
+    }
 
     modal.close()
     if (response?.error || response === false) {
@@ -139,13 +151,18 @@ table.setColumns([
 
 table.setActions({
     onDetails: (data) => {
-        Url.addQueryParam('modo', 'detalhes')
+        retrievedData = data
+        originalBase64Image = data.imagem
 
-        fillForm(data)
-        fileUploader.removeFiles()
-        fileUploader.addFile(data.imagem, {
-            type: 'local'
+        Url.addQueryParam('modo', 'detalhes')
+        fillForm({
+            ...data,
+            imagem: ''
         })
+
+        const blob = Utilities.base64ToBlob(data.imagem)
+        fileUploader.removeFiles()
+        fileUploader.addFile(blob)
 
         openModal({ create: false })
     },
@@ -166,7 +183,7 @@ table.empty = new Empty({
     padding: '86px'
 })
 
-const data = rewardService.getAll()
-table.render([])
+const data = await companyService.getAll()
+table.render(data)
 
 openModalButton.addEventListener('click', openModal)

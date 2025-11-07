@@ -6,14 +6,14 @@ export class RewardCard {
 
     render() {
         const img = new Image()
-        img.src = this.item.imagem
+        img.src = `data:image/jpg;base64,${this.item.imagem}`
         img.alt = 'reward-option'
 
         const h3 = document.createElement('h3')
         h3.textContent = this.item.descricao
 
         const i = document.createElement('i')
-        i.classList.add('fa-solid ', 'fa-coins"')
+        i.classList.add('fa-solid', 'fa-coins')
 
         const button = document.createElement('button')
         button.textContent = this.item.valor
