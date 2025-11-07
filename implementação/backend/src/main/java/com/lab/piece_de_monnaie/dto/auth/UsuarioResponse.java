@@ -12,5 +12,6 @@ public class UsuarioResponse {
 
     Long id;
     String username;
+    String nome;
     TipoUsuario tipo;
 }

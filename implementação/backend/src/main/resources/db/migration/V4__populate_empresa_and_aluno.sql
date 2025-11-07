@@ -13,7 +13,7 @@ COMMIT;
 START TRANSACTION;
 
 INSERT INTO usuario (username, senha, nome, tipo)
-VALUES ('glad0s', '$2a$10$.zc/lbWHhdVxj6QnKUkg0e8ewwq71HgOClb.jmCUQTZ1Q0K.8rEka', 'glag0s', 'EMPRESA'); -- senha: pw
+VALUES ('glad0s', '$2a$10$.zc/lbWHhdVxj6QnKUkg0e8ewwq71HgOClb.jmCUQTZ1Q0K.8rEka', 'glad0s', 'EMPRESA'); -- senha: pw
 
 SET @id = LAST_INSERT_ID();
 
