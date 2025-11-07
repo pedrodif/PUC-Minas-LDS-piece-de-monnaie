@@ -5,6 +5,7 @@ header {
   align-items: center;
   justify-content: space-between;
   box-shadow: var(--shadow-default);
+  background-color: var(--purple-trouble);
 }
 
 img[alt="logo"] {
@@ -22,8 +23,8 @@ header div {
 header div span {
   padding: 8px;
   border-radius: 20px;
-  border: 2px solid var(--blue-sea);
-  box-shadow: var(--shadow-default);
+  border: 2px solid white;
+  color: white;
   animation: fadeSlideUp 0.4s ease-in-out;
   font-size: 12px;
 }
@@ -31,4 +32,5 @@ header div span {
 header div i {
   cursor: pointer;
   animation: fadeSlideUp 0.4s ease-in-out;
+  color: white;
 }

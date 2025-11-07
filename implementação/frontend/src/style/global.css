@@ -19,6 +19,8 @@
   --yellow-mid: #ffc107;
   --yellow-light: #f6f6ce;
   --gray-mid: #969aa3;
+  --gray-lin: #ecececff;
+  --purple-trouble: #340444;
 }
 
 html {
@@ -39,6 +41,7 @@ button {
   border-radius: var(--radius);
   padding: 8px;
   transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
+  background-color: white;
 }
 
 button:hover {

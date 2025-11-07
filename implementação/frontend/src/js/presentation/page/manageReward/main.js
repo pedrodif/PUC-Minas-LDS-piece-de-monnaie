@@ -87,6 +87,7 @@ const fillForm = (data = {}) => {
 const handleSubmit = async (data) => {
     const files = fileUploader.getFiles()
     const base64 = files[0].getFileEncodeBase64String()
+    const fileName = files[0].file.name 
 
     let response
     const { modo } = Url.getParams()
@@ -100,7 +101,8 @@ const handleSubmit = async (data) => {
     } else {
         response = await companyService.create({
             ...data,
-            imagem: base64
+            imagem: base64,
+            nomeImagem: fileName
         })
     }
 
@@ -160,7 +162,7 @@ table.setActions({
             imagem: ''
         })
 
-        const blob = Utilities.base64ToBlob(data.imagem)
+        const blob = Utilities.base64ToFile(data.imagem, data.nomeImagem)
         fileUploader.removeFiles()
         fileUploader.addFile(blob)
 
