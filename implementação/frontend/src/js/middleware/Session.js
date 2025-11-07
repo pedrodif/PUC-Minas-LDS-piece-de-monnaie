@@ -10,15 +10,15 @@ export class Session extends Middleware {
             createdAt: Date.now()
         }))
         
-        const { token } = user
+        const { token } = user.jwtResponse
 
         sessionStorage.setItem('token', JSON.stringify({
             value: token,
             createdAt: Date.now()
         }))
 
-        delete user.token
-        sessionStorage.setItem('user', JSON.stringify(user))
+        delete user.jwtResponse
+        sessionStorage.setItem('user', JSON.stringify(user.usuarioResponse))
     }
 
     static kill() {

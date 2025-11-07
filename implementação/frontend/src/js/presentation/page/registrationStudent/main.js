@@ -46,7 +46,7 @@ IMask(CPFInput, {
 })
 
 IMask(RGInput, {
-    mask: '00.000.000'
+    mask: '00.000.000-0'
 })
 
 passwordInput.addEventListener('focus', (event) => {
@@ -58,7 +58,6 @@ passwordInput.addEventListener('blur', (event) => {
 })
 
 const handleSubmit = async (data) => {
-    // await alunoService.create(data)
-    console.log(data)
+    await alunoService.create(data)
 }
 form.onSubmit(handleSubmit)
