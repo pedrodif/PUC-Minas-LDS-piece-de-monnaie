@@ -35,6 +35,8 @@ public class SecurityConfiguration {
                             .hasAuthority("EMPRESA")
                             .requestMatchers(HttpMethod.PUT, "/api/empresas-parceiras/*/vantagens")
                             .hasAuthority("EMPRESA")
+                            .requestMatchers("/api/cursos")
+                            .permitAll()
                             .requestMatchers("/api/auth/**")
                             .permitAll()
                             .anyRequest()
