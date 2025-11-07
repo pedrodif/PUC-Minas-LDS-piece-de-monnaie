@@ -2,6 +2,7 @@ package com.lab.piece_de_monnaie.config;
 
 import com.lab.piece_de_monnaie.repository.UsuarioRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -14,6 +15,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Configuration
 @RequiredArgsConstructor
+@Slf4j
 public class ApplicationConfiguration {
 
     private final UsuarioRepository usuarioRepository;
@@ -21,7 +23,10 @@ public class ApplicationConfiguration {
     @Bean
     UserDetailsService userDetailsService() {
         return username -> usuarioRepository.findByUsername(username)
-                .orElseThrow(() -> new UsernameNotFoundException("Usuário '" + username + "' não encontrado."));
+                .orElseGet(() -> {
+                    log.info("{} não encontrado no sistema", username);
+                    throw new UsernameNotFoundException("Usuário '" + username + "' não encontrado.");
+                });
     }
 
     @Bean
@@ -38,7 +43,7 @@ public class ApplicationConfiguration {
     AuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider(userDetailsService());
         authenticationProvider.setPasswordEncoder(passwordEncoder());
-
+        authenticationProvider.setHideUserNotFoundExceptions(false);
         return authenticationProvider;
     }
 }
