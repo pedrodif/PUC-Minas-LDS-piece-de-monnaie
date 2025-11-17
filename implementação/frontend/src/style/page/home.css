@@ -27,6 +27,9 @@ figure div {
 
 figure div p {
   display: none;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 24px;
 }
 
 figure div p i {
