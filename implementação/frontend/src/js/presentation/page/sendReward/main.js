@@ -72,7 +72,26 @@ table.setColumns([
         name: 'value',
         text: 'Valor de Premiação',
         sortable: false,
-        modifier: (value) => value
+        modifier: (_, data) => {
+            const input = document.createElement('input')
+            input.type = 'number'
+            input.value = 1
+            input.min = 1
+            input.step = 1
+            input.pattern = '\\d+'
+            input.style.width = '80px'
+            input.style.padding = '8px'
+            input.style.borderRadius = 'var(--radius)'
+            input.style.border = '1px solid var(--gray-mid)'
+            input.name = 'quantity-input'
+
+            input.addEventListener('input', () => {
+                input.value = input.value.replace(/\D/g, '')
+                if (input.value === '' || Number(input.value) <= 0) input.value = 1
+            })
+
+            return input
+        }
     },
     {
         name: 'confirmButton',
@@ -81,7 +100,7 @@ table.setColumns([
         modifier: (_, data) => {
             const button = document.createElement('button')
             button.textContent = 'Teste'
-            button.onclick = () => console.log(data.nome)
+            button.onclick = () => console.log(data.value)
             return button
         }
     },
@@ -96,28 +115,28 @@ table.empty = new Empty({
 
 // const data = await companyService.getAll()
 table.render([
-        // {
-        //     nome: "Ana Souza",
-        //     cpf: "123.456.789-00",
-        //     rg: "12.345.678-9",
-        //     email: "ana.souza@example.com",
-        // },
-        // {
-        //     nome: "Bruno Almeida",
-        //     cpf: "987.654.321-00",
-        //     rg: "98.765.432-1",
-        //     email: "bruno.almeida@example.com",
-        // },
-        // {
-        //     nome: "Carla Ribeiro",
-        //     cpf: "456.789.123-00",
-        //     rg: "45.678.912-3",
-        //     email: "carla.ribeiro@example.com",
-        // },
-        // {
-        //     nome: "Diego Martins",
-        //     cpf: "321.654.987-00",
-        //     rg: "32.165.498-7",
-        //     email: "diego.martins@example.com",
-        // }
+    {
+        nome: "Ana Souza",
+        cpf: "123.456.789-00",
+        rg: "12.345.678-9",
+        email: "ana.souza@example.com",
+    },
+    {
+        nome: "Bruno Almeida",
+        cpf: "987.654.321-00",
+        rg: "98.765.432-1",
+        email: "bruno.almeida@example.com",
+    },
+    {
+        nome: "Carla Ribeiro",
+        cpf: "456.789.123-00",
+        rg: "45.678.912-3",
+        email: "carla.ribeiro@example.com",
+    },
+    {
+        nome: "Diego Martins",
+        cpf: "321.654.987-00",
+        rg: "32.165.498-7",
+        email: "diego.martins@example.com",
+    }
 ])
