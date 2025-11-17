@@ -32,7 +32,7 @@ const BUTTON_CONFIGS = {
             display: 'flex',
             innerHTML: `<i class="fa-solid fa-coins"></i> ${user.quantidadeMoeda} Moedas`
         },
-        onClick: () => window.location.href = ''
+        onClick: () => window.location.href = routes.sendReward
     }
 }
 

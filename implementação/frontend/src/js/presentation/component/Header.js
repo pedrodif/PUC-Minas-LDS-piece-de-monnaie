@@ -9,7 +9,7 @@ export class Header {
 
     render() {
         const img = new Image()
-        img.src = ''
+        img.src = '../../img/favIcon.svg'
         img.alt = 'logo'
 
         const span = document.createElement('span')
