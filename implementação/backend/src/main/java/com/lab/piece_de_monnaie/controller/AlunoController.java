@@ -48,4 +48,10 @@ public class AlunoController {
         List<AlunoDTO> alunos = alunoService.findByCurso(cursoId);
         return ResponseEntity.ok(alunos);
     }
+    
+    @GetMapping("/professor/{professorId}")
+    public ResponseEntity<List<AlunoDTO>> findByProfessor(@PathVariable Long professorId) {
+        List<AlunoDTO> alunos = alunoService.findByProfessor(professorId);
+        return ResponseEntity.ok(alunos);
+    }
 }

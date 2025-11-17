@@ -5,10 +5,12 @@ import com.lab.piece_de_monnaie.dto.CreateAlunoDTO;
 import com.lab.piece_de_monnaie.dto.UpdateAlunoDTO;
 import com.lab.piece_de_monnaie.entity.Aluno;
 import com.lab.piece_de_monnaie.entity.Curso;
+import com.lab.piece_de_monnaie.entity.Professor;
 import com.lab.piece_de_monnaie.exception.ResourceNotFoundException;
 import com.lab.piece_de_monnaie.mapper.AlunoMapper;
 import com.lab.piece_de_monnaie.repository.AlunoRepository;
 import com.lab.piece_de_monnaie.repository.CursoRepository;
+import com.lab.piece_de_monnaie.repository.ProfessorRepository;
 import com.lab.piece_de_monnaie.repository.UsuarioRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -24,6 +26,7 @@ public class AlunoService {
     
     private final AlunoRepository alunoRepository;
     private final CursoRepository cursoRepository;
+    private final ProfessorRepository professorRepository;
     private final UsuarioRepository usuarioRepository;
     private final AlunoMapper alunoMapper;
     private final PasswordEncoder passwordEncoder;
@@ -96,6 +99,19 @@ public class AlunoService {
     
     public List<AlunoDTO> findByCurso(Long cursoId) {
         return alunoRepository.findByCursoId(cursoId).stream()
+                .map(alunoMapper::toDTO)
+                .toList();
+    }
+    
+    public List<AlunoDTO> findByProfessor(Long professorId) {
+        // Buscar o professor
+        Professor professor = professorRepository.findById(professorId)
+                .orElseThrow(() -> new ResourceNotFoundException("Professor não encontrado com ID: " + professorId));
+        
+        // Buscar alunos dos cursos do mesmo departamento do professor
+        List<Aluno> alunos = alunoRepository.findByCursoDepartamento(professor.getDepartamento());
+        
+        return alunos.stream()
                 .map(alunoMapper::toDTO)
                 .toList();
     }
