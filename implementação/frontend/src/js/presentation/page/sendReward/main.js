@@ -45,26 +45,46 @@ breadcrumb.add([
 
 table.setColumns([
     {
-        name: 'descricao',
-        text: 'Descricão',
+        name: 'nome',
+        text: 'Nome',
         sortable: true,
         modifier: (value) => value
     },
     {
-        name: 'valor',
-        text: 'Valor',
+        name: 'cpf',
+        text: 'CPF',
         sortable: true,
         modifier: (value) => value
     },
     {
-        name: 'actions',
-        text: 'Ações',
+        name: 'rg',
+        text: 'RG',
+        sortable: true,
+        modifier: (value) => value
+    },
+    {
+        name: 'email',
+        text: 'Email',
+        sortable: true,
+        modifier: (value) => value
+    },
+    {
+        name: 'value',
+        text: 'Valor de Premiação',
         sortable: false,
-        icons: [
-            { name: 'onDetails', icon: 'fa-magnifying-glass', title: 'Detalhes' },
-            { name: 'onDelete', icon: 'fa-times', title: 'Deletar' }
-        ]
-    }
+        modifier: (value) => value
+    },
+    {
+        name: 'confirmButton',
+        text: 'Confirmação',
+        sortable: false,
+        modifier: (_, data) => {
+            const button = document.createElement('button')
+            button.textContent = 'Teste'
+            button.onclick = () => console.log(data.nome)
+            return button
+        }
+    },
 ])
 
 table.empty = new Empty({
@@ -75,4 +95,29 @@ table.empty = new Empty({
 })
 
 // const data = await companyService.getAll()
-// table.render(data)
+table.render([
+        // {
+        //     nome: "Ana Souza",
+        //     cpf: "123.456.789-00",
+        //     rg: "12.345.678-9",
+        //     email: "ana.souza@example.com",
+        // },
+        // {
+        //     nome: "Bruno Almeida",
+        //     cpf: "987.654.321-00",
+        //     rg: "98.765.432-1",
+        //     email: "bruno.almeida@example.com",
+        // },
+        // {
+        //     nome: "Carla Ribeiro",
+        //     cpf: "456.789.123-00",
+        //     rg: "45.678.912-3",
+        //     email: "carla.ribeiro@example.com",
+        // },
+        // {
+        //     nome: "Diego Martins",
+        //     cpf: "321.654.987-00",
+        //     rg: "32.165.498-7",
+        //     email: "diego.martins@example.com",
+        // }
+])
