@@ -1,4 +1,4 @@
-
+import { Empty } from './Empty.js'
 
 export class Timeline {
     constructor(container) {
