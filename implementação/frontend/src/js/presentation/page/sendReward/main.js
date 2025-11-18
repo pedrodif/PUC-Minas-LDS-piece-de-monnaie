@@ -33,7 +33,7 @@ const breadcrumb = Breadcrumb.getBreadcrumb()
 
 const header = new Header()
 const table = new Table(document.querySelector('table'))
-const dialog = new Dialog('Deseja premiar este aluno?')
+const dialog = new Dialog('Confirmar a premiação deste aluno?')
 
 header.render()
 breadcrumb.add([
@@ -75,6 +75,7 @@ table.setColumns([
         modifier: (_, data) => {
             const input = document.createElement('input')
             input.type = 'number'
+            input.name = 'quantity-input'
             input.value = 1
             input.min = 1
             input.step = 1
@@ -83,7 +84,7 @@ table.setColumns([
             input.style.padding = '8px'
             input.style.borderRadius = 'var(--radius)'
             input.style.border = '1px solid var(--gray-mid)'
-            input.name = 'quantity-input'
+            input.dataset.studentId = data.id
 
             input.addEventListener('input', () => {
                 input.value = input.value.replace(/\D/g, '')
@@ -94,13 +95,24 @@ table.setColumns([
         }
     },
     {
-        name: 'confirmButton',
-        text: 'Confirmação',
+        name: 'deliberation',
+        text: 'Deliberação',
         sortable: false,
         modifier: (_, data) => {
             const button = document.createElement('button')
-            button.textContent = 'Teste'
-            button.onclick = () => console.log(data.value)
+            button.type = 'button'
+            button.textContent = 'Confirmar'
+
+            button.addEventListener('click', async () => {
+                const input = document.querySelector(`input[data-student-id="${data.id}"]`)
+                const value = input.value
+
+                const confirmed = await dialog.show()
+                if (!confirmed) return
+
+                // const response = await rewardService.create(value)
+
+            })
             return button
         }
     },
@@ -116,24 +128,28 @@ table.empty = new Empty({
 // const data = await companyService.getAll()
 table.render([
     {
+        id: "5",
         nome: "Ana Souza",
         cpf: "123.456.789-00",
         rg: "12.345.678-9",
         email: "ana.souza@example.com",
     },
     {
+        id: "6",
         nome: "Bruno Almeida",
         cpf: "987.654.321-00",
         rg: "98.765.432-1",
         email: "bruno.almeida@example.com",
     },
     {
+        id: "7",
         nome: "Carla Ribeiro",
         cpf: "456.789.123-00",
         rg: "45.678.912-3",
         email: "carla.ribeiro@example.com",
     },
     {
+        id: "8",
         nome: "Diego Martins",
         cpf: "321.654.987-00",
         rg: "32.165.498-7",
