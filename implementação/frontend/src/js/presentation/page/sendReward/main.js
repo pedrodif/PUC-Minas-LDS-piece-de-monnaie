@@ -7,6 +7,14 @@ import { Session } from '../../../middleware/Session.js'
 import { Service } from '../../../application/Service.js'
 import { Breadcrumb } from '../../component/Breadcrumb.js'
 
+const routes = Url.mountRoutes()
+const user = Session.userProvider()
+const breadcrumb = Breadcrumb.getBreadcrumb()
+
+const header = new Header()
+const table = new Table(document.querySelector('table'))
+const dialog = new Dialog('Confirmar a premiação deste aluno?')
+
 const rewardService = new Service({
     endpoint: '',
     toastMessages: {
@@ -18,7 +26,7 @@ const rewardService = new Service({
 })
 
 const studentService = new Service({
-    endpoint: '',
+    endpoint: `/api/alunos/professor/${user.id}`,
     toastMessages: {
         list: {
             error: 'Erro ao listar alunos.',
@@ -26,14 +34,6 @@ const studentService = new Service({
         },
     }
 })
-
-const routes = Url.mountRoutes()
-const user = Session.userProvider()
-const breadcrumb = Breadcrumb.getBreadcrumb()
-
-const header = new Header()
-const table = new Table(document.querySelector('table'))
-const dialog = new Dialog('Confirmar a premiação deste aluno?')
 
 header.render()
 breadcrumb.add([
@@ -125,7 +125,7 @@ table.empty = new Empty({
     displayTitle: false
 })
 
-// const data = await companyService.getAll()
+// const data = await studentService.getAll()
 table.render([
     {
         id: "5",
