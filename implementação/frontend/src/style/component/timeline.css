@@ -1,0 +1,59 @@
+.timeline {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 20px;
+  top: 0;
+  bottom: 0;
+  border-left: 2px dashed var(--border);
+}
+
+.timeline-item {
+  display: flex;
+  align-items: flex-start;
+  flex-flow: column;
+  position: relative;
+  margin-bottom: 20px;
+  opacity: 0;
+  transform: translateY(-15px);
+  animation-name: slideDownFade;
+  animation-timing-function: ease;
+  animation-fill-mode: forwards;
+}
+
+.timeline-marco {
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  left: -20px;
+}
+
+.timeline-marco i {
+  font-size: 22px;
+}
+
+.timeline-marco i {
+  color: var(--green-mid);
+}
+
+.timeline-info {
+  font-size: 0.9em;
+}
+
+@keyframes slideDownFade {
+  0% {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
