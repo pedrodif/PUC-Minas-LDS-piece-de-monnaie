@@ -1,14 +1,29 @@
 
 import { Url } from '../../../helper/Url.js'
 import { Header } from '../../component/Header.js'
+import { Timeline } from './../../component/Timeline.js'
+import { Service } from '../../../application/Service.js'
 import { Session } from './../../../middleware/Session.js'
 
-const header = new Header()
 const routes = Url.mountRoutes()
 const user = Session.userProvider()
+
 const p = document.querySelector('p')
 const button = document.querySelector('button')
 const figcaption = document.querySelector('figcaption')
+
+const header = new Header()
+const timeline = new Timeline(document.querySelector('#timeline-container'))
+
+const transactionsService = new Service({
+    endpoint: '',
+    toastMessages: {
+        list: {
+            error: 'Erro ao listar transações.',
+            success: 'Transações listadas com sucesso!',
+        },
+    }
+})
 
 const BUTTON_CONFIGS = {
     ALUNO: {
@@ -50,3 +65,6 @@ const customizeHome = () => {
 
 header.render()
 customizeHome()
+
+// const data = await transactionsService.getAll()
+// timeline.render(data)
