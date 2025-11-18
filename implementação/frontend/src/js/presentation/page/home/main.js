@@ -43,7 +43,7 @@ const BUTTON_CONFIGS = {
     },
     PROFESSOR: {
         text: 'Meus Alunos',
-        displayBalance: {
+        balance: {
             display: 'flex',
             innerHTML: `<i class="fa-solid fa-coins"></i> ${user.quantidadeMoeda} Moedas`
         },
