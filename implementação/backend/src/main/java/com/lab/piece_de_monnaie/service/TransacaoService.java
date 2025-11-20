@@ -7,6 +7,7 @@ import com.lab.piece_de_monnaie.entity.Transacao;
 import com.lab.piece_de_monnaie.exception.SaldoInvalidoException;
 import com.lab.piece_de_monnaie.repository.TransacaoRepository;
 import com.lab.piece_de_monnaie.type.TipoTransacao;
+import com.lab.piece_de_monnaie.type.TipoUsuario;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -26,6 +27,10 @@ public class TransacaoService {
     private final AlunoService alunoService;
     private final ProfessorService professorService;
     private final TransacaoRepository transacaoRepository;
+
+    public List<Transacao> findAllOwn(Authentication authentication) {
+        return transacaoRepository.findAllByEmissorOrReceptorUsername(authentication.getName());
+    }
 
     public List<Transacao> findAll() {
         return transacaoRepository.findAll();
@@ -69,4 +74,5 @@ public class TransacaoService {
             throw new SaldoInvalidoException("Saldo insuficiente para envio.");
         }
     }
+
 }
