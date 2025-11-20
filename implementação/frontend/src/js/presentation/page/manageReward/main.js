@@ -19,7 +19,7 @@ const header = new Header()
 const form = new Form(document.querySelector('form'))
 const table = new Table(document.querySelector('table'))
 const modal = new Modal(document.querySelector('#modal'))
-const dialog = new Dialog('Deseja deletar essa vantagem?')
+const dialog = new Dialog({ message: 'Deseja deletar essa vantagem?' })
 
 let retrievedData = null
 let originalBase64Image = null
@@ -87,7 +87,7 @@ const fillForm = (data = {}) => {
 const handleSubmit = async (data) => {
     const files = fileUploader.getFiles()
     const base64 = files[0].getFileEncodeBase64String()
-    const fileName = files[0].file.name 
+    const fileName = files[0].file.name
 
     let response
     const { modo } = Url.getParams()

@@ -13,10 +13,14 @@ const breadcrumb = Breadcrumb.getBreadcrumb()
 
 const header = new Header()
 const table = new Table(document.querySelector('table'))
-const dialog = new Dialog('Confirmar a premiação deste aluno?')
+
+const dialog = new Dialog({
+    message: 'Confirmar a premiação deste aluno?',
+    displayTextarea: true
+})
 
 const rewardService = new Service({
-    endpoint: '',
+    endpoint: `/api/professores/enviar-moedas`,
     toastMessages: {
         create: {
             error: 'Erro ao premiar aluno.',
@@ -104,15 +108,22 @@ table.setColumns([
             button.textContent = 'Confirmar'
 
             button.addEventListener('click', async () => {
-                const input = document.querySelector(`input[data-student-id="${data.id}"]`)
-                const value = input.value
-
                 const confirmed = await dialog.show()
                 if (!confirmed) return
 
-                // const response = await rewardService.create(value)
+                const input = document.querySelector(`input[data-student-id="${data.id}"]`)
+                const reward = input.value
+                const message = dialog.getData()
 
+                await rewardService.create({
+                    id: data.id,
+                    montante: reward,
+                    mensagem: message === '' ? 'Parabéns pelo seu esforço! Continue assim.' : message
+                })
+
+                input.value = 1
             })
+
             return button
         }
     },
@@ -125,34 +136,5 @@ table.empty = new Empty({
     displayTitle: false
 })
 
-// const data = await studentService.getAll()
-table.render([
-    {
-        id: "5",
-        nome: "Ana Souza",
-        cpf: "123.456.789-00",
-        rg: "12.345.678-9",
-        email: "ana.souza@example.com",
-    },
-    {
-        id: "6",
-        nome: "Bruno Almeida",
-        cpf: "987.654.321-00",
-        rg: "98.765.432-1",
-        email: "bruno.almeida@example.com",
-    },
-    {
-        id: "7",
-        nome: "Carla Ribeiro",
-        cpf: "456.789.123-00",
-        rg: "45.678.912-3",
-        email: "carla.ribeiro@example.com",
-    },
-    {
-        id: "8",
-        nome: "Diego Martins",
-        cpf: "321.654.987-00",
-        rg: "32.165.498-7",
-        email: "diego.martins@example.com",
-    }
-])
+const data = await studentService.getAll()
+table.render(data === false ? [] : data)

@@ -6,17 +6,17 @@ export class Service {
     constructor({
         endpoint,
         toastMessages = {},
-        onSuccessDisplay = true
+        onSuccessDisplayToast = true
     }) {
         this.toastMessages = toastMessages
-        this.onSuccessDisplay = onSuccessDisplay
+        this.onSuccessDisplayToast = onSuccessDisplayToast
         this.APIClient = new APIClient(endpoint)
     }
 
     async perform(action, notifierKey) {
         try {
             const response = await RequestHelper.execute(action)
-            const shouldNotify = response === false || this.onSuccessDisplay
+            const shouldNotify = response === false || this.onSuccessDisplayToast
 
             if (shouldNotify)
                 Notifier.response(response, notifierKey, this.toastMessages)
@@ -36,7 +36,10 @@ export class Service {
     }
 
     async create(data) {
-        return this.perform(() => this.APIClient.post(data), 'create')
+        const { id } = data
+        delete data.id
+
+        return this.perform(() => this.APIClient.post(id, data), 'create')
     }
 
     async update(data) {

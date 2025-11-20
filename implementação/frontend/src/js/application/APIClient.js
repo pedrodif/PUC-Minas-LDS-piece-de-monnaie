@@ -37,12 +37,12 @@ export class APIClient {
             .catch(error => console.error('getById: ', error))
     }
 
-    post(data) {
+    post(id, data) {
         if (!data) {
             throw new Error('É necessário fornecer os dados para envio.')
         }
 
-        return fetch(this.url_base,
+        return fetch(`${this.url_base}${id ? `/${id}` : ''}`,
             {
                 method: 'POST',
                 ...this.HEADERS_JSON,
