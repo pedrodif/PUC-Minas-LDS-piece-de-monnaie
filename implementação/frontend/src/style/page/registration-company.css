@@ -13,8 +13,8 @@ form {
   display: grid;
   grid:
     "h1 h1 h1"
-    "email email senha"
-    "username nome cnpj"
+    "nome username senha"
+    "email email cnpj"
     "button button button";
   gap: 4px;
   animation: fadeSlideUp 0.4s ease-in-out;
@@ -53,6 +53,8 @@ fieldset#cnpj {
 button[type="submit"] {
   grid-area: button;
   box-shadow: var(--shadow-default);
+  background-color: var(--purple-trouble);
+  color: white;
 }
 
 input {

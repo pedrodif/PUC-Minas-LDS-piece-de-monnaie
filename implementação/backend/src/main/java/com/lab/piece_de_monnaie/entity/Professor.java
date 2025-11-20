@@ -20,7 +20,7 @@ public class Professor extends Usuario {
     private String departamento;
 
     @Column(name = "quantidadeMoeda")
-    private String quantidadeMoeda;
+    private Long quantidadeMoeda;
 
     @ManyToOne
     @JoinColumn(name = "instituicao_ensino_id")
@@ -29,6 +29,10 @@ public class Professor extends Usuario {
     @PrePersist
     public void prePersist() {
         super.setTipo(TipoUsuario.PROFESSOR);
+    }
+
+    public boolean temSaldo(Long montante){
+        return this.quantidadeMoeda >= montante;
     }
 }
 

@@ -21,7 +21,7 @@ td {
 }
 
 th {
-  background-color: var(--gray-mid);
+  background-color: var(--gray-lin);
   font-weight: normal;
 }
 
@@ -30,7 +30,7 @@ th > span > i {
 }
 
 tr:hover {
-  background-color: var(--gray-mid);
+  background-color: var(--gray-lin);
   transition: background 0.3s, transform 0.3s;
 }
 
@@ -60,7 +60,7 @@ tr:hover {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background-color: var(--gray-mid);
+  background-color: var(--gray-lin);
 }
 
 .pager-input {

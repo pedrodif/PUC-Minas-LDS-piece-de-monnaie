@@ -6,13 +6,10 @@ import { Url } from '../../../helper/Url.js'
 
 const routes = Url.mountRoutes()
 const form = new Form(document.querySelector('form'))
+
 const loginService = new Service({
     endpoint: '/api/auth/login',
-    toastMessages: {
-        create: {
-            error: 'Erro ao realizar login.'
-        }
-    }
+    onSuccessDisplayToast: false,
 })
 
 const handleSubmit = async (data) => {

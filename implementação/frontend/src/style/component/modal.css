@@ -86,17 +86,11 @@
     background-color 0.2s ease-in-out;
 }
 
-input:disabled,
-textarea:disabled,
-.choices.is-disabled .choices__inner,
-.choices.is-disabled .choices__list {
-  background-color: var(--gray-mid);
-}
-
 .modal button {
   grid-area: button;
   justify-self: end;
   animation: fadeSlideUp 0.4s ease-in-out;
-  border: 2px solid var(--blue-sea);
   box-shadow: var(--shadow-default);
+  background-color: var(--purple-trouble);
+  color: white;
 }

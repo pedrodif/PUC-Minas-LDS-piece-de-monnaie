@@ -13,8 +13,8 @@ form {
   display: grid;
   grid:
     "h1 h1 h1"
-    "nome nome senha"
-    "email email username"
+    "nome nome username"
+    "senha email email"
     "cpf cpf rg"
     "curso curso curso"
     "endereco endereco endereco"
@@ -68,6 +68,8 @@ fieldset#endereco {
 button[type="submit"] {
   grid-area: button;
   box-shadow: var(--shadow-default);
+  background-color: var(--purple-trouble);
+  color: white;
 }
 
 input,

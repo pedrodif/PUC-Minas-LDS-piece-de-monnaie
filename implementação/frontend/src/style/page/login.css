@@ -26,6 +26,8 @@ h1 {
 }
 
 img[alt="logo"] {
+  width: 260px;
+  height: 260px;
 }
 
 form {
@@ -39,6 +41,12 @@ fieldset {
 
 button[type="submit"] {
   width: 100%;
+  background-color: var(--purple-trouble);
+  color: white;
+}
+
+button[type="submit"] i {
+  color: white;
 }
 
 input {

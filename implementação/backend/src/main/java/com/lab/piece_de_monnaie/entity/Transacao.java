@@ -31,7 +31,7 @@ public class Transacao {
     private String mensagem;
 
     @Column(name = "tipo")
-    @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.ORDINAL)
     private TipoTransacao tipo;
 
     @ManyToOne
@@ -45,4 +45,9 @@ public class Transacao {
     @ManyToOne
     @JoinColumn(name = "receptor_id", nullable = false)
     private Usuario receptor;
+
+    @PrePersist
+    public void prePersist() {
+        this.feitaEm = LocalDateTime.now();
+    }
 }
