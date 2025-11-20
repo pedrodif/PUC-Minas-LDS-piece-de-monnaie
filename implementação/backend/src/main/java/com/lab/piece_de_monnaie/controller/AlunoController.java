@@ -3,9 +3,13 @@ package com.lab.piece_de_monnaie.controller;
 import com.lab.piece_de_monnaie.dto.AlunoDTO;
 import com.lab.piece_de_monnaie.dto.CreateAlunoDTO;
 import com.lab.piece_de_monnaie.dto.UpdateAlunoDTO;
+import com.lab.piece_de_monnaie.dto.auth.AlunoResponse;
+import com.lab.piece_de_monnaie.dto.transasao.TransacaoEnvioRequest;
+import com.lab.piece_de_monnaie.mapper.AlunoMapper;
 import com.lab.piece_de_monnaie.service.AlunoService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,6 +22,7 @@ import java.util.List;
 public class AlunoController {
     
     private final AlunoService alunoService;
+    private final AlunoMapper alunoMapper;
     
     @GetMapping
     public ResponseEntity<List<AlunoDTO>> findAll() {
@@ -54,4 +59,5 @@ public class AlunoController {
         List<AlunoDTO> alunos = alunoService.findByProfessor(professorId);
         return ResponseEntity.ok(alunos);
     }
+
 }
