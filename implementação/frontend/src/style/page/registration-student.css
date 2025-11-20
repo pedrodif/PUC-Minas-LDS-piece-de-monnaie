@@ -12,10 +12,9 @@ form {
   padding: 32px;
   display: grid;
   grid:
-    "logo logo logo"
     "h1 h1 h1"
-    "nome nome senha"
-    "email email username"
+    "nome nome username"
+    "senha email email"
     "cpf cpf rg"
     "curso curso curso"
     "endereco endereco endereco"
@@ -27,12 +26,6 @@ form {
 form h1 {
   grid-area: h1;
   font-weight: 300;
-}
-
-img[alt="logo"] {
-  width: 100px;
-  height: 100px;
-  grid-area: logo;
 }
 
 fieldset {

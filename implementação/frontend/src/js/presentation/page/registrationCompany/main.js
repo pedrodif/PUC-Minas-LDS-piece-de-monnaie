@@ -12,10 +12,7 @@ const passwordInput = document.querySelector('input[type="password"]')
 const companyService = new Service({
     endpoint: '/api/auth/parceiro',
     toastMessages: {
-        create: {
-            error: 'Erro ao cadastrar nova empresa.',
-            success: 'Nova empresa cadastrada com sucesso!'
-        }
+        create: 'Nova empresa cadastrada com sucesso!'
     }
 })
 

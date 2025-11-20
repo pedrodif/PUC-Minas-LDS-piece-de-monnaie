@@ -15,10 +15,7 @@ const cursoService = new Service({ endpoint: '/api/cursos' })
 const alunoService = new Service({
     endpoint: '/api/auth/aluno',
     toastMessages: {
-        create: {
-            error: 'Erro ao cadastrar novo aluno.',
-            success: 'Novo aluno cadastrado com sucesso!'
-        }
+        create: 'Novo aluno cadastrado com sucesso!'
     }
 })
 

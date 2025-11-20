@@ -23,7 +23,7 @@ export class APIClient {
 
     getAll() {
         return fetch(this.url_base, this.HEADERS_DEFAULT)
-            .then(response => response.ok ? response.json() : false)
+            .then(response => response.json())
             .catch(error => console.error('getAll: ', error))
     }
 
@@ -33,7 +33,7 @@ export class APIClient {
         }
 
         return fetch(`${this.url_base}/${id}`, this.HEADERS_DEFAULT)
-            .then(response => response.ok ? response.json() : false)
+            .then(response => response.json())
             .catch(error => console.error('getById: ', error))
     }
 
@@ -67,7 +67,7 @@ export class APIClient {
                 ...this.HEADERS_JSON,
                 body: JSON.stringify(data)
             }
-        ).then(response => response.ok ? response.json() : false)
+        ).then(response => response.json())
             .catch(error => console.error('put: ', error))
     }
 
@@ -81,7 +81,7 @@ export class APIClient {
                 method: 'DELETE',
                 ...this.HEADERS_DEFAULT
             }
-        ).then(response => response.ok ? true : false)
+        ).then(response => response.json())
             .catch(error => console.error('delete: ', error))
     }
 }

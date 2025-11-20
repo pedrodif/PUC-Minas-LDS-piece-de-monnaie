@@ -22,10 +22,7 @@ const dialog = new Dialog({
 const rewardService = new Service({
     endpoint: `/api/professores/enviar-moedas`,
     toastMessages: {
-        create: {
-            error: 'Erro ao premiar aluno.',
-            success: 'Premiação realizada com sucesso!',
-        }
+        create: 'Premiação realizada com sucesso!',
     }
 })
 

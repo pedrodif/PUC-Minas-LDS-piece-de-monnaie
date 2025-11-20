@@ -47,7 +47,7 @@
 }
 .toast.success > p,
 .toast.success > i {
-  color: var(--white);
+  color: white;
 }
 
 .toast.error {
@@ -65,7 +65,7 @@
 }
 .toast.info > p,
 .toast.info > i {
-  color: var(--white);
+  color: white;
 }
 
 .toast.warn {
@@ -74,7 +74,7 @@
 }
 .toast.warn > p,
 .toast.warn > i {
-  color: var(--yellow-mid);
+  color: white;
 }
 
 @media (min-width: 758px) {

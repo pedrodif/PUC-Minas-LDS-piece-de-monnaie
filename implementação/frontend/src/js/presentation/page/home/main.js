@@ -1,12 +1,14 @@
 
 import { Url } from '../../../helper/Url.js'
 import { Header } from '../../component/Header.js'
+import { Notifier } from '../../../helper/Notifier.js'
 import { Timeline } from './../../component/Timeline.js'
 import { Service } from '../../../application/Service.js'
 import { Session } from './../../../middleware/Session.js'
 
 const routes = Url.mountRoutes()
 const user = Session.userProvider()
+const shouldNotify = Session.shouldNotify()
 
 const p = document.querySelector('p')
 const button = document.querySelector('button')
@@ -59,6 +61,10 @@ const customizeHome = () => {
 
 header.render()
 customizeHome()
+
+if (shouldNotify) {
+    Notifier.info('Login realizado com sucesso!')
+}
 
 const data = await transactionsService.getAll()
 timeline.render(data)

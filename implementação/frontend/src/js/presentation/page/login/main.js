@@ -10,11 +10,6 @@ const form = new Form(document.querySelector('form'))
 const loginService = new Service({
     endpoint: '/api/auth/login',
     onSuccessDisplayToast: false,
-    toastMessages: {
-        create: {
-            error: 'Erro ao realizar login.'
-        }
-    }
 })
 
 const handleSubmit = async (data) => {

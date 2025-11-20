@@ -18,18 +18,30 @@ export class Notifier {
     }
 
     static response(response, variant, options) {
-        if (response?.error) {
-            Notifier.error(response.error)
-            return
-        }
+        if (Object.keys(response).length === 1) {
+            if (response?.error) {
+                Notifier.error(response.error)
+                return
+            }
 
-        if (!response) {
-            Notifier.error(options[variant].error)
-            return
+            if (response?.rg) {
+                Notifier.error(response.rg)
+                return
+            }
+
+            if (response?.cpf) {
+                Notifier.error(response.cpf)
+                return
+            }
+
+            if (response?.cnpj) {
+                Notifier.error(response.cnpj)
+                return
+            }
         }
 
         if (variant != 'list' && variant != 'retrieve') {
-            Notifier.success(options[variant].success)
+            Notifier.success(options[variant])
         }
     }
 }
