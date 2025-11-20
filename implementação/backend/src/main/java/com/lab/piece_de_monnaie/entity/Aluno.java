@@ -36,4 +36,8 @@ public class Aluno extends Usuario {
     public void prePersist() {
         super.setTipo(TipoUsuario.ALUNO);
     }
+
+    public boolean podeComprar(Vantagem vantagem) {
+        return this.getQuantidadeMoeda() <= vantagem.getValor();
+    }
 }

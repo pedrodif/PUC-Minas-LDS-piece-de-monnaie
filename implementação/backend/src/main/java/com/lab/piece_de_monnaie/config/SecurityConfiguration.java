@@ -32,6 +32,10 @@ public class SecurityConfiguration {
         http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authorizeConfig -> {
                     authorizeConfig
+                            .requestMatchers(HttpMethod.POST, "/api/professores/enviar-moedas/*")
+                            .hasAuthority("PROFESSOR")
+                            .requestMatchers(HttpMethod.POST, "/api/vantagens/*")
+                            .hasAnyRole("ALUNO")
                             .requestMatchers(HttpMethod.POST, "/api/empresas-parceiras/*/vantagens")
                             .hasAuthority("EMPRESA")
                             .requestMatchers(HttpMethod.PUT, "/api/empresas-parceiras/*/vantagens")
