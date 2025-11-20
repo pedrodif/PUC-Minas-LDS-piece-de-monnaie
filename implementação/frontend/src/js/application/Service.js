@@ -5,23 +5,21 @@ import { RequestHelper } from '../helper/RequestHelper.js'
 export class Service {
     constructor({
         endpoint,
-        toastMessages = {}
+        toastMessages = {},
+        onSuccessDisplay = true
     }) {
         this.toastMessages = toastMessages
+        this.onSuccessDisplay = onSuccessDisplay
         this.APIClient = new APIClient(endpoint)
     }
 
-    async getAll() {
-        const response = await RequestHelper.execute(() => this.APIClient.getAll())
-        Notifier.response(response, 'list', this.toastMessages)
-
-        return response
-    }
-
-    async getById(id) {
+    async perform(action, notifierKey) {
         try {
-            const response = await RequestHelper.execute(() => this.APIClient.getById(id))
-            Notifier.response(response, 'retrieve', this.toastMessages)
+            const response = await RequestHelper.execute(action)
+            const shouldNotify = response === false || this.onSuccessDisplay
+
+            if (shouldNotify)
+                Notifier.response(response, notifierKey, this.toastMessages)
 
             return response
         } catch (error) {
@@ -29,38 +27,24 @@ export class Service {
         }
     }
 
-    async create(data) {
-        try {
-            const response = await RequestHelper.execute(() => this.APIClient.post(data))
-            Notifier.response(response, 'create', this.toastMessages)
+    async getAll() {
+        return this.perform(() => this.APIClient.getAll(), 'list')
+    }
 
-            return response
-        } catch (err) {
-            return { error: err.message }
-        }
+    async getById(id) {
+        return this.perform(() => this.APIClient.getById(id), 'retrieve')
+    }
+
+    async create(data) {
+        return this.perform(() => this.APIClient.post(data), 'create')
     }
 
     async update(data) {
         const { id } = data
-
-        try {
-            const response = await RequestHelper.execute(() => this.APIClient.put(id, data))
-            Notifier.response(response, 'update', this.toastMessages)
-
-            return response
-        } catch (err) {
-            return { error: err.message }
-        }
+        return this.perform(() => this.APIClient.put(id, data), 'update')
     }
 
     async delete(id) {
-        try {
-            const response = await RequestHelper.execute(() => this.APIClient.delete(id))
-            Notifier.response(response, 'delete', this.toastMessages)
-
-            return response
-        } catch (error) {
-            return { error: error.message }
-        }
+        return this.perform(() => this.APIClient.delete(id), 'delete')
     }
 }
