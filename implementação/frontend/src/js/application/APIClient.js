@@ -81,7 +81,7 @@ export class APIClient {
                 method: 'DELETE',
                 ...this.HEADERS_DEFAULT
             }
-        ).then(response => response.json())
+        ).then(response => response.ok ? true : response.json())
             .catch(error => console.error('delete: ', error))
     }
 }

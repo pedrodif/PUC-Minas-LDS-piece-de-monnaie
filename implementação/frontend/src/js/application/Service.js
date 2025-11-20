@@ -16,7 +16,6 @@ export class Service {
     async perform(action, notifierKey) {
         try {
             const response = await RequestHelper.execute(action)
-            console.log(response)
             const shouldNotify = Object.keys(response).length === 1 || this.onSuccessDisplayToast
 
             if (shouldNotify)
