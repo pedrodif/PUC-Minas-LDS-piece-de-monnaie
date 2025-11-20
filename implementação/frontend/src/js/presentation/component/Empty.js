@@ -5,7 +5,7 @@ export class Empty {
         margin = '16px 0',
         displayTitle = true,
         boxShadow = 'var(--shadow-default)',
-        backgroundColor = 'var(--gray-mid)',
+        backgroundColor = 'var(--gray-lin)',
         fontSize = {
             h2: {
                 desktop: '20px',

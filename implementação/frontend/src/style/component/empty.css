@@ -1,8 +1,4 @@
 .empty-state {
-  background-image: url("");
-  background-size: 60%;
-  background-position: top 20px right 10px;
-  background-repeat: no-repeat;
   padding: 16px;
   width: 100%;
 }
@@ -30,12 +26,6 @@
 
 @media (min-width: 758px) {
   .empty-state {
-    background-size: 40%;
-    background-position: right 100px top 30px;
     padding: 32px;
-  }
-
-  .empty-state > div {
-    width: 80%;
   }
 }

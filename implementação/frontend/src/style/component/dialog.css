@@ -22,12 +22,21 @@
   padding: 40px;
   min-width: 300px;
   max-width: 90%;
+  display: flex;
+  flex-flow: column;
+  gap: 20px;
 }
 
 .dialog-container h4 {
   font-weight: 400;
-  margin-bottom: 20px;
   font-size: 18px;
+}
+
+.dialog-container textarea {
+  resize: none;
+  padding: 8px;
+  border: 1px solid;
+  border-radius: var(--radius);
 }
 
 .dialog-container button {
