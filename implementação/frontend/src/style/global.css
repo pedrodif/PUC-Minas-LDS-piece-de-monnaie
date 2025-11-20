@@ -21,6 +21,7 @@
   --gray-mid: #969aa3;
   --gray-lin: #ecececff;
   --purple-trouble: #340444;
+  --purple-trouble-glass-light: rgba(52, 4, 68, 0.18);
 }
 
 html {

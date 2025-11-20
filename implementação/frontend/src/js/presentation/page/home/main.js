@@ -16,13 +16,7 @@ const header = new Header()
 const timeline = new Timeline(document.querySelector('#timeline-container'))
 
 const transactionsService = new Service({
-    endpoint: '',
-    toastMessages: {
-        list: {
-            error: 'Erro ao listar transações.',
-            success: 'Transações listadas com sucesso!',
-        },
-    }
+    endpoint: '/api/transacoes',
 })
 
 const BUTTON_CONFIGS = {
@@ -42,7 +36,7 @@ const BUTTON_CONFIGS = {
         onClick: () => window.location.href = routes.manageReward
     },
     PROFESSOR: {
-        text: 'Meus Alunos',
+        text: '<i class="fa-solid fa-graduation-cap"></i> Meus Alunos',
         balance: {
             display: 'flex',
             innerHTML: `<i class="fa-solid fa-coins"></i> ${user.quantidadeMoeda} Moedas`
@@ -66,5 +60,5 @@ const customizeHome = () => {
 header.render()
 customizeHome()
 
-// const data = await transactionsService.getAll()
-// timeline.render(data)
+const data = await transactionsService.getAll()
+timeline.render(data)

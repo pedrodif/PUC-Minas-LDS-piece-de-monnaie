@@ -2,63 +2,70 @@ main {
   width: 100%;
   display: flex;
   flex-flow: column;
-  gap: 16px;
+  gap: 8px;
 }
 
-figure {
+main > figure {
   width: 80%;
-  margin: 40px auto;
-  padding: 2%;
+  margin: 60px auto 0;
+  padding: 0 4% 0 0;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
   animation: fadeSlideUp 0.4s ease-in-out;
 }
 
-figcaption {
+img[alt="body-logo"] {
+  animation: fadeSlideUp 0.4s ease-in-out;
+  width: 160px;
+  height: 160px;
+}
+
+main > figure > figcaption {
   font-weight: 300;
   font-size: 24px;
 }
 
-figure div {
+main > figure div {
   width: 220px;
   padding: 1%;
 }
 
-figure div p {
+main > figure div p {
   display: none;
   justify-content: space-around;
   align-items: center;
   font-size: 24px;
 }
 
-figure div p i {
+main > figure div p i {
   font-size: 32px;
   color: gold;
 }
 
-figure div button {
+main > figure div button {
   width: 100%;
   margin-top: 4px;
   box-shadow: var(--shadow-default);
   background-color: var(--purple-trouble);
+  border: 2px solid var(--yellow-mid);
+  border-radius: 6px;
   color: white;
 }
 
-figure div button i {
+main > figure div button i {
   color: white;
 }
 
-section {
+main > section {
   width: 80%;
   min-height: 260px;
-  padding: 12px;
+  padding: 2%;
   margin: 0 auto;
-  border: 1px solid var(--blue-sea);
   animation: fadeSlideUp 0.4s ease-in-out;
-  border-radius: var(--radius);
 }
 
-h3 {
+main > section h3 {
   font-weight: 300;
+  font-size: 20px;
 }
