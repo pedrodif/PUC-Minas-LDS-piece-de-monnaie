@@ -49,4 +49,10 @@ public class VantagemController {
         vantagemService.deleteById(vantagemId);
         return ResponseEntity.ok().build();
     }
+
+//    @PostMapping("/{vantagemId}/{quantidade}")
+//    public ResponseEntity<Void> resgatarVantagem(@PathVariable Long vantagemId) {
+//        vantagemService.resgatarVantagemOfId(vantagemId);
+//        return ResponseEntity.ok().build();
+//    }
 }

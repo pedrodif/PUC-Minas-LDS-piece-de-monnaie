@@ -15,6 +15,8 @@ public interface AlunoRepository extends JpaRepository<Aluno, Long> {
     List<Aluno> findByCursoId(Long cursoId);
     
     Optional<Aluno> findByCpf(String cpf);
+
+    Optional<Aluno> findByUsername(String username);
     
     @Query("SELECT a FROM Aluno a WHERE a.curso.departamento = :departamento")
     List<Aluno> findByCursoDepartamento(@Param("departamento") String departamento);

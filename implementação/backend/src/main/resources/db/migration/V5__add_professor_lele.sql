@@ -6,7 +6,7 @@ VALUES ('lele', '$2a$10$.zc/lbWHhdVxj6QnKUkg0e8ewwq71HgOClb.jmCUQTZ1Q0K.8rEka', 
 SET @id = LAST_INSERT_ID();
 
 INSERT INTO professor (id, CPF, departamento, quantidade_moeda, instituicao_ensino_id)
-VALUES (@id, '123.456.789-00', 'Theranos', 0, 1);
+VALUES (@id, '123.456.789-00', 'Theranos', 100, 1);
 
 COMMIT;
 
