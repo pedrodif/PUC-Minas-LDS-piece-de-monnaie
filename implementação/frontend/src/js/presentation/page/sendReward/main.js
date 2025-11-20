@@ -47,6 +47,30 @@ breadcrumb.add([
     }
 ])
 
+const handleButtonClick = async (data) => {
+    const confirmed = await dialog.show()
+    if (!confirmed) return
+
+    const input = document.querySelector(`input[data-student-id="${data.id}"]`)
+    const reward = input.value
+    const message = dialog.getData()
+
+    const response = await rewardService.create({
+        id: data.id,
+        montante: reward,
+        mensagem: message === '' ? 'Parabéns pelo seu esforço! Continue assim.' : message
+    })
+
+    if (Object.keys(response).length > 0) {
+        Session.updateUser({
+            ...user,
+            quantidadeMoeda: response.emissor.quantidadeMoeda
+        })
+    }
+
+    input.value = 1
+}
+
 table.setColumns([
     {
         name: 'nome',
@@ -106,24 +130,7 @@ table.setColumns([
             const button = document.createElement('button')
             button.type = 'button'
             button.textContent = 'Confirmar'
-
-            button.addEventListener('click', async () => {
-                const confirmed = await dialog.show()
-                if (!confirmed) return
-
-                const input = document.querySelector(`input[data-student-id="${data.id}"]`)
-                const reward = input.value
-                const message = dialog.getData()
-
-                await rewardService.create({
-                    id: data.id,
-                    montante: reward,
-                    mensagem: message === '' ? 'Parabéns pelo seu esforço! Continue assim.' : message
-                })
-
-                input.value = 1
-            })
-
+            button.addEventListener('click', () => handleButtonClick(data))
             return button
         }
     },

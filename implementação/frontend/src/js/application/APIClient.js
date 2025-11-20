@@ -48,7 +48,7 @@ export class APIClient {
                 ...this.HEADERS_JSON,
                 body: JSON.stringify(data)
             }
-        ).then(response => response.ok ? response.json() : false)
+        ).then(response => response.json())
             .catch(error => console.error('post: ', error))
     }
 
