@@ -79,7 +79,7 @@ const handleSubmit = async (data) => {
         response = await rewardService.update({
             ...retrievedData,
             ...data,
-            imagem: originalBase64Image
+            imagem: originalBase64Image,
         })
     } else {
         response = await companyService.create({
