@@ -31,12 +31,6 @@ const rewardService = new Service({
 
 const studentService = new Service({
     endpoint: `/api/alunos/professor/${user.id}`,
-    toastMessages: {
-        list: {
-            error: 'Erro ao listar alunos.',
-            success: 'Alunos listadas com sucesso!',
-        },
-    }
 })
 
 header.render()
@@ -61,7 +55,7 @@ const handleButtonClick = async (data) => {
         mensagem: message === '' ? 'Parabéns pelo seu esforço! Continue assim.' : message
     })
 
-    if (Object.keys(response).length > 0) {
+    if (response?.emissor?.quantidadeMoeda) {
         Session.updateUser({
             ...user,
             quantidadeMoeda: response.emissor.quantidadeMoeda

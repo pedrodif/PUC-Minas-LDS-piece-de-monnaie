@@ -39,10 +39,6 @@ const fileUploader = FilePond.create(document.querySelector('.filepond'), {
 const companyService = new Service({
     endpoint: `/api/empresas-parceiras/${user.id}/vantagens`,
     toastMessages: {
-        list: {
-            error: 'Erro ao listar vantagens.',
-            success: 'Vantagens listadas com sucesso!',
-        },
         create: {
             error: 'Erro ao cadastrar vantagem.',
             success: 'Vantagem cadastrada com sucesso!',
@@ -60,10 +56,6 @@ const rewardService = new Service({
         update: {
             error: 'Erro ao atualizar vantagem.',
             success: 'Vantagem atualizada com sucesso!',
-        },
-        retrieve: {
-            error: 'Erro ao recuperar vantagem.',
-            success: 'Vantagem recuperada com sucesso!',
         },
     }
 })

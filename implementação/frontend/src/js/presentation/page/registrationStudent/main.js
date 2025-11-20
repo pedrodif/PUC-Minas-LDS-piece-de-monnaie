@@ -34,7 +34,6 @@ breadcrumb.add([
 ])
 
 const cursos = await cursoService.getAll()
-
 const options = cursos.reduce((acc, item) => acc +=
     `<option value="${item.id}">${item.nome} - ${item.instituicaoDeEnsino.nome}</option>`
     , `<option value="" disabled selected>Curso/Instituição</option>`)
