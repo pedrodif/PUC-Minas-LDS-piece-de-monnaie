@@ -18,6 +18,8 @@ h2 {
 button[type="button"] {
   box-shadow: var(--shadow-default);
   background-color: var(--purple-trouble);
+  border-radius: 6px;
+  border: 2px solid var(--yellow-mid);
   color: white;
 }
 

@@ -1,0 +1,80 @@
+.timeline {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding: 6%;
+  position: relative;
+}
+
+.timeline::before {
+  content: "";
+  left: 40px;
+  top: 0;
+  bottom: 0;
+  border-left: 3px dashed var(--blue-sea);
+  position: absolute;
+}
+
+.timeline-item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  opacity: 0;
+  transform: translateY(-15px);
+  animation-name: slideDownFade;
+  animation-timing-function: ease;
+  animation-fill-mode: forwards;
+  position: relative;
+}
+
+.timeline-marco {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  left: -60px;
+  border: 3px solid var(--blue-sea);
+  background-color: white;
+  position: absolute;
+}
+
+.timeline-marco i {
+  font-size: 26px;
+}
+
+.timeline-marco i {
+  color: var(--green-mid);
+}
+
+.timeline-info {
+  width: 100%;
+  padding: 2%;
+  margin-left: 12px;
+  border: 2px solid var(--purple-trouble);
+  background-color: var(--purple-trouble-glass-light);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-default);
+}
+
+.timeline-info details {
+  display: flex;
+  flex-flow: column;
+}
+
+.timeline-info p {
+  display: block;
+}
+
+@keyframes slideDownFade {
+  0% {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

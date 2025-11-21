@@ -15,10 +15,7 @@ const cursoService = new Service({ endpoint: '/api/cursos' })
 const alunoService = new Service({
     endpoint: '/api/auth/aluno',
     toastMessages: {
-        create: {
-            error: 'Erro ao cadastrar novo aluno.',
-            success: 'Novo aluno cadastrado com sucesso!'
-        }
+        create: 'Novo aluno cadastrado com sucesso!'
     }
 })
 
@@ -34,7 +31,6 @@ breadcrumb.add([
 ])
 
 const cursos = await cursoService.getAll()
-
 const options = cursos.reduce((acc, item) => acc +=
     `<option value="${item.id}">${item.nome} - ${item.instituicaoDeEnsino.nome}</option>`
     , `<option value="" disabled selected>Curso/Instituição</option>`)

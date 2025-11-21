@@ -19,7 +19,7 @@ const header = new Header()
 const form = new Form(document.querySelector('form'))
 const table = new Table(document.querySelector('table'))
 const modal = new Modal(document.querySelector('#modal'))
-const dialog = new Dialog('Deseja deletar essa vantagem?')
+const dialog = new Dialog({ message: 'Deseja deletar essa vantagem?' })
 
 let retrievedData = null
 let originalBase64Image = null
@@ -39,32 +39,15 @@ const fileUploader = FilePond.create(document.querySelector('.filepond'), {
 const companyService = new Service({
     endpoint: `/api/empresas-parceiras/${user.id}/vantagens`,
     toastMessages: {
-        list: {
-            error: 'Erro ao listar vantagens.',
-            success: 'Vantagens listadas com sucesso!',
-        },
-        create: {
-            error: 'Erro ao cadastrar vantagem.',
-            success: 'Vantagem cadastrada com sucesso!',
-        }
+        create: 'Vantagem cadastrada com sucesso!',
     }
 })
 
 const rewardService = new Service({
     endpoint: '/api/vantagens',
     toastMessages: {
-        delete: {
-            error: 'Erro ao deletar vantagem.',
-            success: 'Vantagem deletada com sucesso!',
-        },
-        update: {
-            error: 'Erro ao atualizar vantagem.',
-            success: 'Vantagem atualizada com sucesso!',
-        },
-        retrieve: {
-            error: 'Erro ao recuperar vantagem.',
-            success: 'Vantagem recuperada com sucesso!',
-        },
+        delete: 'Vantagem deletada com sucesso!',
+        update: 'Vantagem atualizada com sucesso!',
     }
 })
 
@@ -87,7 +70,7 @@ const fillForm = (data = {}) => {
 const handleSubmit = async (data) => {
     const files = fileUploader.getFiles()
     const base64 = files[0].getFileEncodeBase64String()
-    const fileName = files[0].file.name 
+    const fileName = files[0].file.name
 
     let response
     const { modo } = Url.getParams()
@@ -96,7 +79,7 @@ const handleSubmit = async (data) => {
         response = await rewardService.update({
             ...retrievedData,
             ...data,
-            imagem: originalBase64Image
+            imagem: originalBase64Image,
         })
     } else {
         response = await companyService.create({

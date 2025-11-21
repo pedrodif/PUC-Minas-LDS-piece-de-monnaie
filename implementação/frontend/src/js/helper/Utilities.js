@@ -11,4 +11,15 @@ export class Utilities {
         const byteArray = new Uint8Array(byteNumbers)
         return new File([byteArray], filename, { type: contentType })
     }
+
+    static formatDateTime(value) {
+        const dateOptions = {
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+            hour: '2-digit',
+            minute: '2-digit'
+        }
+        return new Date(value).toLocaleString('pt-BR', dateOptions)
+    }
 }

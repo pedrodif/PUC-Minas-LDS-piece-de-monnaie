@@ -27,6 +27,9 @@ public class Vantagem {
     @Column(name = "imagem")
     private String imagem;
 
+    @Column(name = "nome_imagem")
+    private String nomeImagem;
+
     @ManyToOne
     @JoinColumn(name = "empresa_parceira_id")
     private EmpresaParceira empresaParceira;
