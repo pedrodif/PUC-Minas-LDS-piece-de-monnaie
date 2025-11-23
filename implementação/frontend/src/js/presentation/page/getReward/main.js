@@ -31,13 +31,21 @@ breadcrumb.add([
     }
 ])
 
+const handleButtonClick = (data) => {
+    console.log(data)
+}
+
 const data = await rewardService.getAll()
 
 if (data.length > 0) {
     emptyContainer.style.display = 'none'
 
     data.forEach(datum => {
-        const rewardCard = new RewardCard({ item: datum })
+        const rewardCard = new RewardCard({
+            item: datum,
+            onButtonClick: handleButtonClick
+        })
+
         requestAnimationFrame(() => rewardsContainer.appendChild(rewardCard.render()))
     })
 } else {

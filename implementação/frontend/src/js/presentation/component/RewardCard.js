@@ -17,6 +17,7 @@ export class RewardCard {
 
         const button = document.createElement('button')
         button.textContent = this.item.valor
+        button.onclick = () => this.onButtonClick(this.item)
         button.appendChild(i)
 
         const div = document.createElement('div')
