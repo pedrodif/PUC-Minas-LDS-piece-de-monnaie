@@ -126,4 +126,8 @@ public class AlunoService {
         return alunoRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Aluno de ID:" + id + " não encontrado."));
     }
+    public Aluno findByUsernameOrThrow(String username) {
+        return alunoRepository.findByUsername(username)
+                .orElseThrow(() -> new ResourceNotFoundException("Aluno de username:" + username + " não encontrado."));
+    }
 }

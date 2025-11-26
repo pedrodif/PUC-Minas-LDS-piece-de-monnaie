@@ -4,10 +4,13 @@ import com.lab.piece_de_monnaie.dto.VantagemRequest;
 import com.lab.piece_de_monnaie.dto.VantagemResponse;
 import com.lab.piece_de_monnaie.entity.Vantagem;
 import com.lab.piece_de_monnaie.mapper.VantagemMapper;
+import com.lab.piece_de_monnaie.service.TransacaoService;
 import com.lab.piece_de_monnaie.service.VantagemService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,6 +23,7 @@ public class VantagemController {
 
     private final VantagemService vantagemService;
     private final VantagemMapper vantagemMapper;
+    private final TransacaoService transacaoService;
 
     @GetMapping()
     public ResponseEntity<List<VantagemResponse>> findAllVantagens() {
@@ -50,9 +54,9 @@ public class VantagemController {
         return ResponseEntity.ok().build();
     }
 
-//    @PostMapping("/{vantagemId}/{quantidade}")
-//    public ResponseEntity<Void> resgatarVantagem(@PathVariable Long vantagemId) {
-//        vantagemService.resgatarVantagemOfId(vantagemId);
-//        return ResponseEntity.ok().build();
-//    }
+    @PostMapping("/{vantagemId}/resgatar")
+    public ResponseEntity<Void> resgatarVantagem(Authentication authentication, @PathVariable Long vantagemId) {
+        transacaoService.solicitaTransacaoTrocaByVantagemId(authentication, vantagemId);
+        return ResponseEntity.ok().build();
+    }
 }
