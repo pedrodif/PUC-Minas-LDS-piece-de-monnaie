@@ -38,7 +38,7 @@ public class Transacao {
     @JoinColumn(name = "vantagem_id")
     private Vantagem vantagem;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "emissor_id", nullable = false)
     private Usuario emissor;
 

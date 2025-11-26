@@ -42,4 +42,9 @@ public class Aluno extends Usuario implements Poupançavel {
     public boolean possuiSaldoSuficiente(Long montante) {
         return this.getQuantidadeMoeda() >= montante;
     }
+
+    @Override
+    public void descontarMontante(Long montante) {
+        this.quantidadeMoeda = this.quantidadeMoeda - montante;
+    }
 }

@@ -2,7 +2,6 @@ package com.lab.piece_de_monnaie.service;
 
 import com.lab.piece_de_monnaie.dto.transasao.TransacaoEnvioRequest;
 import com.lab.piece_de_monnaie.entity.Aluno;
-import com.lab.piece_de_monnaie.entity.Professor;
 import com.lab.piece_de_monnaie.entity.Transacao;
 import com.lab.piece_de_monnaie.entity.Vantagem;
 import com.lab.piece_de_monnaie.entity.interfaces.Poupançavel;
@@ -46,12 +45,12 @@ public class TransacaoService {
                                             Long alunoDestinatarioId,
                                             TransacaoEnvioRequest transacaoEnvioRequest) {
         var professor = professorService.findByUsernameOrThrow(authentication.getName());
-        checaValidadeDeSaldoPorMontanteGasto(professor, transacaoEnvioRequest.montante());
+        checaValidadeDeSaldoPorMontanteEDesconta(professor, transacaoEnvioRequest.montante());
         log.info("Saldo suficiente encontrado em professor {}", professor.getUsername());
 
         var aluno = alunoService.findByIdOrThrow(alunoDestinatarioId);
 
-        computaTransacaoProfessorAluno(professor, aluno, transacaoEnvioRequest.montante());
+        computaTransacaoAlunoMontante(aluno, transacaoEnvioRequest.montante());
 
         return transacaoRepository.save(Transacao.builder()
                 .montante(transacaoEnvioRequest.montante())
@@ -63,10 +62,8 @@ public class TransacaoService {
     }
 
     @Transactional
-    private void computaTransacaoProfessorAluno(Professor professor, Aluno aluno, Long montante) {
-        professor.setQuantidadeMoeda(professor.getQuantidadeMoeda() - montante);
+    private void computaTransacaoAlunoMontante(Aluno aluno, Long montante) {
         aluno.setQuantidadeMoeda(aluno.getQuantidadeMoeda() + montante);
-        professorService.save(professor);
         alunoService.save(aluno);
     }
 
@@ -78,17 +75,17 @@ public class TransacaoService {
     public Transacao computaTransacaoTrocaByVantagemId(Authentication authentication, Long vantagemId) {
         var vantagem = vantagemService.findByIdOrThrow(vantagemId);
         var aluno = alunoService.findByUsernameOrThrow(authentication.getName());
-        checaValidadeDeSaldoPorMontanteGasto(aluno, vantagem.getValor());
-        aluno.setQuantidadeMoeda(aluno.getQuantidadeMoeda() - vantagem.getValor());
+        checaValidadeDeSaldoPorMontanteEDesconta(aluno, vantagem.getValor());
 
         var transacao = this.criaTransacaoDeTrocaDeAlunoEVantagem(aluno, vantagem);
         return transacaoRepository.save(transacao);
     }
 
-    private void checaValidadeDeSaldoPorMontanteGasto(Poupançavel usuario, Long montante) {
+    private void checaValidadeDeSaldoPorMontanteEDesconta(Poupançavel usuario, Long montante) {
         if (!usuario.possuiSaldoSuficiente(montante)) {
             throw new SaldoInvalidoException("Saldo insuficiente para transação.");
         }
+        usuario.descontarMontante(montante);
     }
 
     private Transacao criaTransacaoDeTrocaDeAlunoEVantagem(Aluno aluno, Vantagem vantagem) {
