@@ -1,12 +1,15 @@
 package com.lab.piece_de_monnaie.service;
 
+import com.lab.piece_de_monnaie.dto.email.VoucherEmailData;
 import com.lab.piece_de_monnaie.dto.transasao.TransacaoEnvioRequest;
 import com.lab.piece_de_monnaie.entity.Aluno;
+import com.lab.piece_de_monnaie.entity.EmpresaParceira;
 import com.lab.piece_de_monnaie.entity.Transacao;
 import com.lab.piece_de_monnaie.entity.Vantagem;
 import com.lab.piece_de_monnaie.entity.interfaces.Poupançavel;
 import com.lab.piece_de_monnaie.exception.SaldoInvalidoException;
 import com.lab.piece_de_monnaie.repository.TransacaoRepository;
+import com.lab.piece_de_monnaie.service.email.EmailService;
 import com.lab.piece_de_monnaie.type.TipoTransacao;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -27,6 +30,7 @@ public class TransacaoService {
     private final ProfessorService professorService;
     private final TransacaoRepository transacaoRepository;
     private final VantagemService vantagemService;
+    private final EmailService emailService;
 
     public List<Transacao> findAllOwn(Authentication authentication) {
         return transacaoRepository.findAllByEmissorOrReceptorUsername(authentication.getName());
@@ -68,8 +72,9 @@ public class TransacaoService {
     }
 
     public Transacao solicitaTransacaoTrocaByVantagemId(Authentication authentication, Long vantagemId) {
-        return this.computaTransacaoTrocaByVantagemId(authentication, vantagemId);
-        // para envio posterior de emails. usa o id da transação como código de email mesmo, fodase.
+        var transacao = this.computaTransacaoTrocaByVantagemId(authentication, vantagemId);
+        this.enviarEmailsVoucher(transacao);
+        return transacao;
     }
 
     public Transacao computaTransacaoTrocaByVantagemId(Authentication authentication, Long vantagemId) {
@@ -79,6 +84,45 @@ public class TransacaoService {
 
         var transacao = this.criaTransacaoDeTrocaDeAlunoEVantagem(aluno, vantagem);
         return transacaoRepository.save(transacao);
+    }
+
+    private void enviarEmailsVoucher(Transacao transacao) {
+        try {
+            var aluno = (Aluno) transacao.getEmissor();
+            var empresa = (EmpresaParceira) transacao.getReceptor();
+            var vantagem = transacao.getVantagem();
+
+            if (aluno.getEmail() == null || aluno.getEmail().isBlank()) {
+                log.warn("Aluno {} não possui email cadastrado. Email de voucher não será enviado.", aluno.getUsername());
+                return;
+            }
+
+            if (empresa.getEmail() == null || empresa.getEmail().isBlank()) {
+                log.warn("Empresa {} não possui email cadastrado. Email de voucher não será enviado.", empresa.getUsername());
+                return;
+            }
+
+            String voucherCode = String.format("VOUCHER-%06d", transacao.getId());
+
+            var emailData = VoucherEmailData.builder()
+                    .voucherCode(voucherCode)
+                    .alunoNome(aluno.getNome())
+                    .alunoEmail(aluno.getEmail())
+                    .vantagemDescricao(vantagem.getDescricao())
+                    .empresaNome(empresa.getNome())
+                    .empresaEmail(empresa.getEmail())
+                    .build();
+
+            try {
+                emailService.enviarEmailVoucherAluno(emailData);
+                emailService.enviarEmailVoucherEmpresa(emailData);
+                log.info("Emails de voucher enviados com sucesso para transação {}", transacao.getId());
+            } catch (Exception e) {
+                log.error("Erro ao enviar emails de voucher para transação {}", transacao.getId(), e);
+            }
+        } catch (Exception e) {
+            log.error("Erro ao processar envio de emails de voucher para transação {}", transacao.getId(), e);
+        }
     }
 
     private void checaValidadeDeSaldoPorMontanteEDesconta(Poupançavel usuario, Long montante) {
