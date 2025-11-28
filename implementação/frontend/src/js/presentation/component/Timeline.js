@@ -24,14 +24,23 @@ export class Timeline {
 
     mountItem(item, index) {
         const icone = document.createElement('i')
-        icone.classList.add('fa-solid', this.user.id === item.emissor.id ? 'fa-circle-check' : 'fa-trophy')
+
+        icone.classList.add('fa-solid',
+            item.tipo === 'TROCA'
+                ? 'fa-hand-holding-heart'
+                : this.user.id !== item.emissor.id
+                    ? 'fa-trophy'
+                    : 'fa-circle-check'
+        )
 
         const milestone = document.createElement('div')
         milestone.classList.add('timeline-marco')
         milestone.appendChild(icone)
 
         const summary = document.createElement('summary')
-        summary.textContent = item.mensagem
+        summary.textContent = item.tipo === 'ENVIO'
+            ? item.mensagem
+            : `Vantagem Escolhida: ${item.vantagem.descricao}`
 
         const time = document.createElement('time')
         time.textContent = `Data da movimentação: ${Utilities.formatDateTime(item.feitaEm)}`
@@ -40,18 +49,33 @@ export class Timeline {
         const amount = document.createElement('p')
 
         if (this.user.id === item.emissor.id) {
-            transactionPartner.textContent = `Enviado para: ${item.receptor.nome}`
-            amount.textContent = `${item.montante} moedas enviadas`
+            transactionPartner.textContent = item.tipo === 'ENVIO'
+                ? `Enviado para: ${item.receptor.nome}`
+                : `Oferecido por: ${item.receptor.nome}`
+
+            amount.textContent = item.tipo === 'ENVIO'
+                ? `${item.montante} moedas enviadas`
+                : `${item.montante} moedas utilizadas`
         } else {
-            transactionPartner.textContent = `Enviado por: ${item.emissor.nome}`
-            amount.textContent = `${item.montante} moedas creditadas`
+            transactionPartner.textContent = item.tipo === 'ENVIO'
+                ? `Enviado por: ${item.emissor.nome}`
+                : `Troca realizada por: ${item.emissor.nome}`
+            amount.textContent = item.tipo === 'ENVIO' 
+                ? `${item.montante} moedas creditadas`
+                : `${item.montante} moedas trocadas`
         }
 
         const details = document.createElement('details')
         details.append(summary, time, transactionPartner, amount)
 
         const info = document.createElement('div')
-        info.classList.add('timeline-info')
+        info.classList.add('timeline-info',
+            item.tipo === 'TROCA'
+                ? 'troca'
+                : this.user.id !== item.emissor.id
+                    ? 'recebido'
+                    : 'envio')
+
         info.appendChild(details)
 
         const delay = index * 0.1

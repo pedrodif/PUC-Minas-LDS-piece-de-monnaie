@@ -67,4 +67,5 @@ if (shouldNotify) {
 }
 
 const data = await transactionsService.getAll()
-timeline.render(data)
+const sortedData = data.sort((a, b) => new Date(a.feitaEm) - new Date(b.feitaEm))
+timeline.render(sortedData)

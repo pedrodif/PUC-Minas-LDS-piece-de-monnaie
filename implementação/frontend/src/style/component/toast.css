@@ -42,8 +42,8 @@
 }
 
 .toast.success {
-  background-color: var(--green-light);
-  border-left: 4px solid var(--green-mid);
+  background-color: var(--green-mid);
+  border-left: 4px solid var(--green-light);
 }
 .toast.success > p,
 .toast.success > i {
@@ -51,12 +51,12 @@
 }
 
 .toast.error {
-  background-color: var(--red-light);
-  border-left: 4px solid var(--red-mid);
+  background-color: var(--red-mid);
+  border-left: 4px solid var(--red-light);
 }
 .toast.error > p,
 .toast.error > i {
-  color: var(--red-mid);
+  color: white;
 }
 
 .toast.info {
@@ -69,8 +69,8 @@
 }
 
 .toast.warn {
-  background-color: var(--yellow-light);
-  border-left: 4px solid var(--yellow-mid);
+  background-color: var(--yellow-mid);
+  border-left: 4px solid var(--yellow-light);
 }
 .toast.warn > p,
 .toast.warn > i {

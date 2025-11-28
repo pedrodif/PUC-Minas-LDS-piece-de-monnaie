@@ -17,14 +17,18 @@ export class RewardCard {
 
         const button = document.createElement('button')
         button.textContent = this.item.valor
+        button.onclick = () => this.onButtonClick(this.item)
         button.appendChild(i)
 
         const div = document.createElement('div')
         div.append(h3, button)
 
+        const p = document.createElement('p')
+        p.textContent = `Oferecido por ${this.item.empresaParceira.nome}`
+
         const article = document.createElement('article')
         article.classList.add('reward-card')
-        article.append(img, div)
+        article.append(img, div, p)
 
         return article
     }

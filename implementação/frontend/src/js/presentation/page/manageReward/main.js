@@ -17,8 +17,8 @@ const openModalButton = document.querySelector('.abrir')
 
 const header = new Header()
 const form = new Form(document.querySelector('form'))
-const table = new Table(document.querySelector('table'))
 const modal = new Modal(document.querySelector('#modal'))
+const table = new Table(document.querySelector('table'), 5)
 const dialog = new Dialog({ message: 'Deseja deletar essa vantagem?' })
 
 let retrievedData = null

@@ -6,6 +6,7 @@ import com.lab.piece_de_monnaie.entity.Vantagem;
 import com.lab.piece_de_monnaie.mapper.VantagemMapper;
 import com.lab.piece_de_monnaie.service.TransacaoService;
 import com.lab.piece_de_monnaie.service.VantagemService;
+import com.lab.piece_de_monnaie.entity.Transacao;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -55,8 +56,8 @@ public class VantagemController {
     }
 
     @PostMapping("/{vantagemId}/resgatar")
-    public ResponseEntity<Void> resgatarVantagem(Authentication authentication, @PathVariable Long vantagemId) {
-        transacaoService.solicitaTransacaoTrocaByVantagemId(authentication, vantagemId);
-        return ResponseEntity.ok().build();
+    public ResponseEntity<Transacao> resgatarVantagem(Authentication authentication, @PathVariable Long vantagemId) {
+        var transacao = transacaoService.solicitaTransacaoTrocaByVantagemId(authentication, vantagemId);
+        return ResponseEntity.ok(transacao);
     }
 }

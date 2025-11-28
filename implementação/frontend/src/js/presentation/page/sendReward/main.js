@@ -102,7 +102,7 @@ table.setColumns([
             input.style.width = '80px'
             input.style.padding = '8px'
             input.style.borderRadius = 'var(--radius)'
-            input.style.border = '1px solid var(--gray-mid)'
+            input.style.border = '1px solid var(--yellow-mid)'
             input.dataset.studentId = data.id
 
             input.addEventListener('input', () => {
