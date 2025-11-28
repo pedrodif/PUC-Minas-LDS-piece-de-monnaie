@@ -67,7 +67,7 @@ tr:hover {
   width: 70px;
   height: 40px;
   padding: 8px;
-  border: 1px solid var(--gray-mid);
+  border: 1px solid var(--yellow-mid);
   border-radius: var(--radius);
   background-color: white;
 }
