@@ -26,11 +26,11 @@ export class Timeline {
         const icone = document.createElement('i')
 
         icone.classList.add('fa-solid',
-            this.user.id !== item.emissor.id
-                ? 'fa-trophy'
-                : item.tipo === 'ENVIO'
-                    ? 'fa-circle-check'
-                    : 'fa-hand-holding-heart'
+            item.tipo === 'TROCA'
+                ? 'fa-hand-holding-heart'
+                : this.user.id !== item.emissor.id
+                    ? 'fa-trophy'
+                    : 'fa-circle-check'
         )
 
         const milestone = document.createElement('div')
@@ -65,7 +65,13 @@ export class Timeline {
         details.append(summary, time, transactionPartner, amount)
 
         const info = document.createElement('div')
-        info.classList.add('timeline-info')
+        info.classList.add('timeline-info',
+            item.tipo === 'TROCA'
+                ? 'troca'
+                : this.user.id !== item.emissor.id
+                    ? 'recebido'
+                    : 'envio')
+
         info.appendChild(details)
 
         const delay = index * 0.1

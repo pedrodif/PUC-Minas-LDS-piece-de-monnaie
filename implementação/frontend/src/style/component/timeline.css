@@ -57,6 +57,27 @@
   background-color: var(--purple-trouble-glass-light);
   border-radius: var(--radius);
   box-shadow: var(--shadow-default);
+
+  background-repeat: no-repeat;
+  will-change: opacity, transform, filter;
+}
+
+.envio {
+  background-size: 640px 220px;
+  background-position: right -20px;
+  background-image: url("../../img/envio.svg");
+}
+
+.recebido {
+  background-size: 640px 270px;
+  background-position: right 6px;
+  background-image: url("../../img/recebido.svg");
+}
+
+.troca {
+  background-size: 640px 470px;
+  background-position: right -130px;
+  background-image: url("../../img/troca.svg");
 }
 
 .timeline-info details {

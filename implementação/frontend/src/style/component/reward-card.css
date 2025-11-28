@@ -12,7 +12,7 @@ img[alt="reward-option"] {
   object-fit: cover;
 }
 
-.reward-card div {
+.reward-card div {  
   padding: 16px;
   display: flex;
   justify-content: space-between;
