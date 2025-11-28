@@ -18,7 +18,7 @@ export class APIClient {
             }
         }
 
-        this.url_base = `http://localhost:8080${endpoint}`
+        this.url_base = `http://localhost:8081${endpoint}`
     }
 
     getAll() {
@@ -35,21 +35,6 @@ export class APIClient {
         return fetch(`${this.url_base}/${id}`, this.HEADERS_DEFAULT)
             .then(response => response.json())
             .catch(error => console.error('getById: ', error))
-    }
-
-    post(id, data) {
-        if (!data) {
-            throw new Error('É necessário fornecer os dados para envio.')
-        }
-
-        return fetch(`${this.url_base}${id ? `/${id}` : ''}`,
-            {
-                method: 'POST',
-                ...this.HEADERS_JSON,
-                body: JSON.stringify(data)
-            }
-        ).then(response => response.json())
-            .catch(error => console.error('post: ', error))
     }
 
     put(id, data) {
@@ -83,5 +68,16 @@ export class APIClient {
             }
         ).then(response => response.ok ? true : response.json())
             .catch(error => console.error('delete: ', error))
+    }
+
+    post(id, data, resource) {
+        return fetch(`${this.url_base}${id ? `/${id}` : ''}${resource ? `/${resource}` : ''}`,
+            {
+                method: 'POST',
+                ...this.HEADERS_JSON,
+                ...(Object.keys(data).length > 0 ? { body: JSON.stringify(data) } : {})
+            }
+        ).then(response => response.json())
+            .catch(error => console.error('post: ', error))
     }
 }

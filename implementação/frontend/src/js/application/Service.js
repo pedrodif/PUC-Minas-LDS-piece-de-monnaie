@@ -35,13 +35,6 @@ export class Service {
         return this.perform(() => this.APIClient.getById(id), 'retrieve')
     }
 
-    async create(data) {
-        const { id } = data
-        delete data.id
-
-        return this.perform(() => this.APIClient.post(id, data), 'create')
-    }
-
     async update(data) {
         const { id } = data
         return this.perform(() => this.APIClient.put(id, data), 'update')
@@ -49,5 +42,13 @@ export class Service {
 
     async delete(id) {
         return this.perform(() => this.APIClient.delete(id), 'delete')
+    }
+
+    async create(data) {
+        const { id, resource } = data
+        delete data.id
+        delete data.resource
+
+        return this.perform(() => this.APIClient.post(id, data, resource), 'create')
     }
 }
