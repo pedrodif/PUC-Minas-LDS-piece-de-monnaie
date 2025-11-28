@@ -1,5 +1,6 @@
 package com.lab.piece_de_monnaie.entity;
 
+import com.lab.piece_de_monnaie.entity.interfaces.Poupançavel;
 import com.lab.piece_de_monnaie.type.TipoUsuario;
 import jakarta.persistence.*;
 import lombok.*;
@@ -11,7 +12,7 @@ import lombok.*;
 @NoArgsConstructor
 @Table(name = "aluno")
 @PrimaryKeyJoinColumn(name = "id")
-public class Aluno extends Usuario {
+public class Aluno extends Usuario implements Poupançavel {
     
     @Column(name = "cpf", unique = true, length = 14)
     private String cpf;
@@ -37,7 +38,13 @@ public class Aluno extends Usuario {
         super.setTipo(TipoUsuario.ALUNO);
     }
 
-    public boolean podeComprar(Vantagem vantagem) {
-        return this.getQuantidadeMoeda() <= vantagem.getValor();
+    @Override
+    public boolean possuiSaldoSuficiente(Long montante) {
+        return this.getQuantidadeMoeda() >= montante;
+    }
+
+    @Override
+    public void descontarMontante(Long montante) {
+        this.quantidadeMoeda = this.quantidadeMoeda - montante;
     }
 }

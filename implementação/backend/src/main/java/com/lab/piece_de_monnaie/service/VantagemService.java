@@ -44,25 +44,7 @@ public class VantagemService {
         vantagemRepository.deleteById(id);
     }
 
-    // todo: refatorar posteriormente para TransacaoService
-//    public void resgatarVantagemOfId(Long vantagemId, Principal principal) {
-//        var vantagem = findByIdOrThrow(vantagemId);
-//        var aluno = alunoService.findByUsernameOrThrow(principal.getName());
-//        if(!aluno.podeComprar(vantagem)) {
-//            throw new SaldoInvalidoException("O saldo é insuficiente para realizar a transação.");
-//        }
-//        var transacao = Transacao.builder()
-//                .montante(vantagem.getValor())
-//                .mensagem("Transação realizada em: "  + LocalDateTime.now())
-//                .tipo(TipoTransacao.TROCA)
-//                .vantagem(vantagem)
-//                .emissor(aluno)
-//                .receptor(vantagem.getEmpresaParceira())
-//                .build();
-//
-//    }
-
-    private Vantagem findByIdOrThrow(Long vantagemId) {
+    public Vantagem findByIdOrThrow(Long vantagemId) {
         return vantagemRepository.findById(vantagemId)
                 .orElseThrow(() -> new ResourceNotFoundException("Vantagem de id " + vantagemId + " não encontrada."));
     }
