@@ -57,8 +57,12 @@ export class Timeline {
                 ? `${item.montante} moedas enviadas`
                 : `${item.montante} moedas utilizadas`
         } else {
-            transactionPartner.textContent = `Enviado por: ${item.emissor.nome}`
-            amount.textContent = `${item.montante} moedas creditadas`
+            transactionPartner.textContent = item.tipo === 'ENVIO'
+                ? `Enviado por: ${item.emissor.nome}`
+                : `Troca realizada por: ${item.emissor.nome}`
+            amount.textContent = item.tipo === 'ENVIO' 
+                ? `${item.montante} moedas creditadas`
+                : `${item.montante} moedas trocadas`
         }
 
         const details = document.createElement('details')
