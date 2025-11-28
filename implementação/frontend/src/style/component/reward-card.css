@@ -38,3 +38,9 @@ img[alt="reward-option"] {
   color: white;
   margin-left: 4px;
 }
+
+.reward-card p {
+  padding: 0 16px;
+  font-weight: 300;
+  font-size: 14px;
+}
